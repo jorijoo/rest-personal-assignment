@@ -8,9 +8,9 @@ Web design project group assignment
 
 ### Dependencies and submodules
 
-@repenaattori [Verkkokauppa backend](https://github.com/jorijoo/verkkokauppa_backend)
-    forked from [Verkkokauppa backend](https://github.com/repenaattori/verkkokauppa_backend)
-
+@jorijoo [Verkkokauppa backend](https://github.com/jorijoo/verkkokauppa_backend)
+- forked from @repenaattori [Verkkokauppa backend](https://github.com/repenaattori/verkkokauppa_backend)
+ 
 ## Installation
 
 \$ npm install
