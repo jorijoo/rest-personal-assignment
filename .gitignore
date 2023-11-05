@@ -1,5 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# web design project specific files and folders
+
+/do_not_upload
+startDevelopment.bat
+
 # dependencies
 /node_modules
 /.pnp
