@@ -2,7 +2,8 @@
 
 # web design project specific files and folders
 
-/do_not_upload
+/do_not_upload/*
+!/do_not_upload/.gitkeep
 startDevelopment.bat
 
 # dependencies
