@@ -1,13 +1,18 @@
-import './App.css';
-import axios from 'axios';
-import { Route } from 'react-router';
-import Home from './common/routes/Home';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./common/routes/Home";
+import Navbar from "./common/components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App">
-        <Home />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

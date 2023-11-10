@@ -1,0 +1,53 @@
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 36px;
+  color: #282b2b;
+}
+
+.banner-container {
+  background-color: #efe8e0;
+  width: 100%;
+}
+
+.text-dark {
+  color: #282b2b;
+}
+
+.display-4 {
+  font-weight: bold;
+}
+
+.slogun {
+  font-size: 100px;
+  letter-spacing: 10px;
+}
+
+.lead {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.smaller-text {
+  font-size: 40px;
+  font-weight: normal;
+  letter-spacing: 5px;
+}
+
+@media (max-width: 767px) {
+  .slogun {
+    font-size: 50px;
+    letter-spacing: 5px;
+  }
+
+  .smaller-text {
+    font-size: 20px;
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  h1.display-4 {
+    font-size: 30px;
+  }
+}
