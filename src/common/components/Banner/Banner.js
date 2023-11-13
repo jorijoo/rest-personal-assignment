@@ -3,7 +3,7 @@ import "./Banner.css";
 
 export const Banner = () => {
   return (
-    <div className="banner-container py-5">
+    <div className="banner-container">
       <div className="container text-center">
         <h1 className="display-4 my-4 display-md-lg">
           <span className="smaller-text">All kinds of</span>
