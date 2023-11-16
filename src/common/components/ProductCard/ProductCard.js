@@ -13,10 +13,10 @@ const ProductCard = ({ product }) => {
             className="productCard-image card-img-top"
           />
           <div className="productCard-body card-body d-flex flex-column">
-            <h5 className="productCard-title card-title mb-1 text-dark">
+            <h5 className="productCard-title card-title mb-1 text-dark product-title">
               {product.name}
             </h5>
-            <p className="productCard-text card-text text-dark">
+            <p className="productCard-text card-text text-dark product-title">
               {product.description}
             </p>
             <p className="productCard-price card-text fw-bold text-dark">
