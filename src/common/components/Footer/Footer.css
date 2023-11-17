@@ -1,0 +1,31 @@
+.footer-container {
+  background-color: #efe8e0;
+  color: #282b2b;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.footer-container {
+  position: relative;
+  z-index: 10;
+}
+
+.footer-link {
+  color: #282b2b;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.footer-social-icon {
+  color: #37394b;
+  transition: all 0.5s ease;
+}
+
+.footer-social-icon:hover {
+  color: #37394b;
+  background-color: #ffffff;
+}

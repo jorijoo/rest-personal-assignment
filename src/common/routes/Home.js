@@ -1,10 +1,12 @@
-import React from 'react'
-import { LOCALIZATION } from '../constants/en_default'
+import React from "react";
+import { Banner } from "../components/Banner/Banner";
+import { ProductList } from "../components/ProductList/ProductList";
 
 const Home = () => {
   return (
     <div>
-        <h1>{LOCALIZATION.HELLO} {LOCALIZATION.WORLD}!</h1>      
+      <Banner />
+      <ProductList />
     </div>
   )
 }
