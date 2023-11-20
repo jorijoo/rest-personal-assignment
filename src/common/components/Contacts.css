@@ -1,0 +1,9 @@
+.card {
+    --bs-card-bg: #efe8e0;
+    --bs-card-border-color:#212529
+}
+
+.list-group {
+    --bs-list-group-bg: #efe8e0;
+    --bs-list-group-border-color:#212529
+}

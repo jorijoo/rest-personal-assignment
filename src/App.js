@@ -5,7 +5,8 @@ import Navbar from "./common/components/Navbar/Navbar";
 import DisplayProducts from "./common/routes/DisplayProducts";
 import ProductDetail from "./common/components/ProductDetail/ProductDetail";
 import Footer from "./common/components/Footer/Footer";
-
+import Faq from "./common/components/Faq";
+import Contacts from "./common/components/Contacts";
 function App() {
   return (
     <Router>
@@ -15,6 +16,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/displayProducts" element={<DisplayProducts />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/contacts" element={<Contacts />} />
         </Routes>
         <Footer />
       </div>
