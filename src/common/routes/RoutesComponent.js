@@ -11,6 +11,8 @@ const RoutesComponent = () => {
       <Route path="/" element={<Home />} />
       <Route path="/displayProducts" element={<DisplayProducts />} />
       <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/faq" element={<Faq />} />
+      <Route path="/contacts" element={<Contacts />} />
     </Routes>
   );
 };
