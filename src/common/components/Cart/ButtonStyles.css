@@ -1,0 +1,23 @@
+.quantity-button {
+  background-color: #f0f0f0; /* Light grey background */
+  color: #333; /* Dark text color for contrast */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 5px 10px; /* Padding for spacing */
+  margin: 0 5px; /* Margin to separate buttons */
+  cursor: pointer; /* Cursor indication for clickable element */
+  transition: background-color 0.3s, transform 0.1s; /* Transition for smooth effect */
+}
+
+.quantity-button:hover {
+  background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.quantity-button:active {
+  transform: scale(0.95); /* Slightly shrink when pressed */
+}
+
+/* Accessibility improvements */
+.quantity-button:focus {
+  outline: 2px solid blue; /* Visible outline when focused */
+}

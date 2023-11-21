@@ -15,6 +15,7 @@ const Cart = () => {
       price: "1200.00",
       imageUrl: null,
       category: "Computers",
+      quantity: 1,
     },
     {
       id: 2,
@@ -22,6 +23,7 @@ const Cart = () => {
       price: "700.00",
       imageUrl: null,
       category: "Phones",
+      quantity: 1,
     },
     {
       id: 3,
@@ -29,6 +31,7 @@ const Cart = () => {
       price: "25.00",
       imageUrl: null,
       category: "Sports",
+      quantity: 1,
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ const Cart = () => {
       price: "1550.00",
       imageUrl: null,
       category: "Music",
+      quantity: 1,
     },
     {
       id: 5,
@@ -43,6 +47,7 @@ const Cart = () => {
       price: "2100.00",
       imageUrl: null,
       category: "Music",
+      quantity: 1,
     },
     {
       id: 6,
@@ -50,13 +55,33 @@ const Cart = () => {
       price: "780.00",
       imageUrl: null,
       category: "Phones",
+      quantity: 1,
     },
   ]);
 
-  //Tähän funktiot poista ja määrän muokkausnappeihin
   const removeProduct = (productId) => {
     setProducts((currentProducts) =>
       currentProducts.filter((product) => product.id !== productId)
+    );
+  };
+
+  const increaseQuantity = (productId) => {
+    setProducts((currentProducts) =>
+      currentProducts.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      )
+    );
+  };
+
+  const decreaseQuantity = (productId) => {
+    setProducts((currentProducts) =>
+      currentProducts.map((product) =>
+        product.id === productId && product.quantity > 1
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      )
     );
   };
 
@@ -79,11 +104,10 @@ const Cart = () => {
               key={product.id}
               productName={product.productName}
               price={product.price}
-              imageUrl={product.imageUrl}
-              category={product.category}
+              quantity={product.quantity}
+              increaseQuantity={() => increaseQuantity(product.id)}
+              decreaseQuantity={() => decreaseQuantity(product.id)}
               removeProduct={() => removeProduct(product.id)}
-
-              // Pass down the removeProduct and updateQuantity functions as props
             />
           ))}
         </Col>

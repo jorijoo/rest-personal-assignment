@@ -1,12 +1,15 @@
 import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
+import "./ButtonStyles.css";
 
 const CartCard = ({
   productName,
   price,
-  imageUrl,
-  category,
+  quantity,
+  increaseQuantity,
+  decreaseQuantity,
   removeProduct,
+  imageUrl,
 }) => {
   // Käytetään placeholder-kuvaa, jos imageUrl on null
   const displayImage = imageUrl || "placeholder-kuvan url";
@@ -30,7 +33,6 @@ const CartCard = ({
       <Card.Body className="shadow">
         <Row>
           <Col md={3}>
-            {/* Tuotekuva */}
             <img
               src={displayImage}
               alt={productName}
@@ -39,10 +41,16 @@ const CartCard = ({
           </Col>
           <Col md={6}>
             <h5>{productName}</h5>
-            <p>{category}</p>
           </Col>
           <Col md={3}>
             <div>{`Hinta: €${price}`}</div>
+            <div>{`Määrä: ${quantity}`}</div>
+            <button className="quantity-button" onClick={decreaseQuantity}>
+              -
+            </button>
+            <button className="quantity-button" onClick={increaseQuantity}>
+              +
+            </button>
           </Col>
         </Row>
       </Card.Body>

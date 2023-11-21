@@ -1,33 +1,39 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
+import Card from "react-bootstrap/Card";
 
 const OrderSummary = ({ products }) => {
-  // Lasketaan tuotteiden kokonaishinta
+  // Calculate the total price of the products
   const subtotal = products.reduce((total, product) => {
-    return total + parseFloat(product.price);
+    return total + parseFloat(product.price) * product.quantity;
   }, 0);
 
-  // Toimituskulu, joka tässä tapauksessa demo mielessä kiinteä
+  // Fixed delivery fee for demonstration purposes
   const deliveryFee = 5.0;
 
-  // Laskee kokonaissumman
+  // Calculate the total amount
   const total = subtotal + deliveryFee;
 
   return (
-    <Card className="shadow">
+    <Card className="shadow mb-5">
       <Card.Body>
-        <Card.Title>Order Summary</Card.Title>
+        <Card.Title>Tilauksen yhteenveto</Card.Title>
         <hr />
         <div className="mb-3">
-          Order: <span className="fw-bold"> €{subtotal.toFixed(2)}</span>
+          Tilaus: <span className="fw-bold"> €{subtotal.toFixed(2)}</span>
         </div>
         <div className="mb-3">
-          Delivery Fee:
+          Toimituskulut:
           <span className="fw-bold"> €{deliveryFee.toFixed(2)}</span>
         </div>
         <div>
-          Total: <span className="fw-bold"> €{total.toFixed(2)}</span>
+          Yhteensä: <span className="fw-bold"> €{total.toFixed(2)}</span>
         </div>
+        <hr />
+        <NavLink to="/checkout" className="btn btn-primary btn-lg">
+          Jatka kassalle
+        </NavLink>
       </Card.Body>
     </Card>
   );
