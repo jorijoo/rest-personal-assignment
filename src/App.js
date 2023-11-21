@@ -5,8 +5,8 @@ import Navbar from "./common/components/Navbar/Navbar";
 import DisplayProducts from "./common/routes/DisplayProducts";
 import ProductDetail from "./common/components/ProductDetail/ProductDetail";
 import Footer from "./common/components/Footer/Footer";
-import Faq from "./common/components/Faq";
-import Contacts from "./common/components/Contacts";
+import Faq from "./common/components/FAQ/Faq";
+import Contacts from "./common/components/Contacts/Contacts";
 function App() {
   return (
     <Router>
