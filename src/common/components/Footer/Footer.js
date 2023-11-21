@@ -18,17 +18,17 @@ export const Footer = () => {
             <h4>Tietoa Daavidin divarista</h4>
             <ul className="list-unstyled">
               <li>
-                <a href="#" className="footer-link">
+                <a>
                 Daavidin divari on vuodesta 1929 toiminut kauppa.
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <a>
                 Daavidin divariin on tervetullut koko perhe.
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <a>
                 Täällä asiakkaat ja tuotteet otetaan tosissaan. 
                 Tule tekemään löytöjä.
 
