@@ -1,14 +1,16 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
-import DisplayByCategory from '../DisplayByCategory/DisplayByCategory';
-
+import ProductCard from "../ProductCard/ProductCard";
+import "./ProductCategories.css"
 
 //server link for categories
 const categoryURL = "http://big.kapsi.fi/categories";
 
 export default function ProductCategrories() {
-
+    //Categories from the servers /categories
     const [category, setCategory] = useState([]);
+    //Save category that is in the pressed button
+    const [selectedButton, setSelectedButton] = useState(null);
  
 
     // get categories from server
@@ -26,13 +28,11 @@ export default function ProductCategrories() {
         <div>{/*Odota ja ihmettele*/}
             {category.map((category) => (
                 <>
-                    <button>{category.categoryName}</button>
-                    <DisplayByCategory/>
+                    <button onClick={() => setSelectedButton(category.categoryName)}>{category.categoryName}</button>
                 </>
             ))}
 
         </div>
-
 
     );
 
