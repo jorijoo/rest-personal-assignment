@@ -1,9 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
 import Home from "./Home";
 import DisplayProducts from "./DisplayProducts";
 import ProductDetail from "../components/ProductDetail/ProductDetail";
+import Faq from "../components/FAQ/Faq";
+import Contacts from "../components/Contacts/Contacts";
 
 const RoutesComponent = () => {
   return (

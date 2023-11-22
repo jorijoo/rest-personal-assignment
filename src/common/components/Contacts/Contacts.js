@@ -3,6 +3,7 @@ import "./Contacts.css";
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+
 const Contacts = () => {
   return (
     <div className="banner-container">
@@ -10,6 +11,7 @@ const Contacts = () => {
         <h1 className="display-4 my-4 display-md-lg">
         <span className="smaller-text">Yhteystiedot</span>
         </h1>
+        <img width="500" className="position-absolute bottom-30 end-120 rounded" src='https://big.kapsi.fi/files/others/daavidin_divari.jpg'  />
         <Card style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>Daavidin Divari</Card.Title>
