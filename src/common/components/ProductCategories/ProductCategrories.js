@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
-import ProductCard from "../ProductCard/ProductCard";
 import "./ProductCategories.css"
+import DisplayByCategory from '../DisplayByCategory/DisplayByCategory';
 
 //server link for categories
 const categoryURL = "http://big.kapsi.fi/categories";
@@ -9,8 +9,8 @@ const categoryURL = "http://big.kapsi.fi/categories";
 export default function ProductCategrories() {
     //Categories from the servers /categories
     const [category, setCategory] = useState([]);
-    //Save category that is in the pressed button
-    const [selectedButton, setSelectedButton] = useState(null);
+    // Save the selected category from the pressed button
+    const [selectedCategory, setSelectedCategory] = useState(null);
  
 
     // get categories from server
@@ -22,16 +22,27 @@ export default function ProductCategrories() {
         getCategory();
     }, [])
 
+    function divideByCategory(category){
+        console.log(JSON.stringify(category) + " Habla")
+        setSelectedCategory(category);
+    }
     
 
     return (
-        <div>{/*Odota ja ihmettele*/}
-            {category.map((category) => (
-                <>
-                    <button onClick={() => setSelectedButton(category.categoryName)}>{category.categoryName}</button>
-                </>
-            ))}
-
+        <div id="container">
+            <div id="button-container">
+                {category.map((category) => (
+                    <>
+                        <button key={category.categoryName} onClick={() => divideByCategory(category)}>
+                            {category.categoryName}
+                        </button>
+                        
+                    </>
+                ))}
+            </div>
+            <div id="card-container">
+                <DisplayByCategory name={category.name} selectedCategory={selectedCategory}/>
+            </div>
         </div>
 
     );
