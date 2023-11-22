@@ -12,9 +12,9 @@ const CartCard = ({
   imageUrl,
 }) => {
   // Käytetään placeholder-kuvaa, jos imageUrl on null
-  const displayImage = imageUrl || "placeholder-kuvan url";
+  const displayImage = imageUrl || "/Rectangle17.png";
 
-  const closeIconUrl = "/Group 6.png";
+  const closeIconUrl = "/Group6.png";
 
   return (
     <Card className="mb-3 shadow rounded position-relative">

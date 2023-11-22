@@ -5,7 +5,7 @@ import CartCard from "../components/Cart/CartCard";
 import OrderSummary from "../components/Cart/OrderSummary";
 
 const Cart = () => {
-  const backImageUrl = "/Group 7.png";
+  const backImageUrl = "/Group7.png";
 
   // Dummy data
   const [productsInCart, setProductsInCart] = useState([
