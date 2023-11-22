@@ -8,7 +8,7 @@ const Cart = () => {
   const backImageUrl = "/Group 7.png";
 
   // Dummy data
-  const [products, setProducts] = useState([
+  const [productsInCart, setProductsInCart] = useState([
     {
       id: 1,
       productName: "Macbook Pro 13",
@@ -60,13 +60,13 @@ const Cart = () => {
   ]);
 
   const removeProduct = (productId) => {
-    setProducts((currentProducts) =>
+    setProductsInCart((currentProducts) =>
       currentProducts.filter((product) => product.id !== productId)
     );
   };
 
   const increaseQuantity = (productId) => {
-    setProducts((currentProducts) =>
+    setProductsInCart((currentProducts) =>
       currentProducts.map((product) =>
         product.id === productId
           ? { ...product, quantity: product.quantity + 1 }
@@ -76,7 +76,7 @@ const Cart = () => {
   };
 
   const decreaseQuantity = (productId) => {
-    setProducts((currentProducts) =>
+    setProductsInCart((currentProducts) =>
       currentProducts.map((product) =>
         product.id === productId && product.quantity > 1
           ? { ...product, quantity: product.quantity - 1 }
@@ -99,7 +99,7 @@ const Cart = () => {
       </Row>
       <Row>
         <Col md={8}>
-          {products.map((product) => (
+          {productsInCart.map((product) => (
             <CartCard
               key={product.id}
               productName={product.productName}
@@ -112,7 +112,7 @@ const Cart = () => {
           ))}
         </Col>
         <Col md={4}>
-          <OrderSummary products={products} />
+          <OrderSummary products={productsInCart} />
         </Col>
       </Row>
     </Container>
