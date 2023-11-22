@@ -35,9 +35,9 @@ const Navbar = () => {
                 Products
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/link2" className="nav-link">
-                Link2
+            <li className="nav-item">{/*Tässä toistaseksi ProducCategories etten muuta mitää muiden tekemää*/}
+              <NavLink to="/Productcategories" className="nav-link">
+                Product categories
               </NavLink>
             </li>
             <li className="nav-item">
