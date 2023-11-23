@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ProductCard from "../ProductCard/ProductCard";
-
+import ProductCard from "./ProductCard";
 // server link for products
 const productsURL = "https://big.kapsi.fi/products";
 
@@ -19,7 +18,7 @@ const DisplayByCategory = ({ selectedCategory }) => {
         setProducts(filteredProducts)
       })
       .catch((err) => console.log(err.message));
-      
+
   }, [selectedCategory]);
 
   return (

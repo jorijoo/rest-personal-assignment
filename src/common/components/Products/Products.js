@@ -1,17 +1,17 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
-import "./ProductCategories.css"
-import DisplayByCategory from '../DisplayByCategory/DisplayByCategory';
+import "./Products.css"
+import DisplayByCategory from './DisplayByCategory';
 
 //server link for categories
 const categoryURL = "http://big.kapsi.fi/categories";
 
-export default function ProductCategrories() {
+export default function Products() {
+
     //Categories from the servers /categories
     const [category, setCategory] = useState([]);
     // Save the selected category from the pressed button
     const [selectedCategory, setSelectedCategory] = useState(null);
- 
 
     // get categories from server
     useEffect(() => {
@@ -22,11 +22,9 @@ export default function ProductCategrories() {
         getCategory();
     }, [])
 
-    function divideByCategory(category){
-        console.log(JSON.stringify(category) + " Habla")
+    function divideByCategory(category) {
         setSelectedCategory(category);
     }
-    
 
     return (
         <div id="container">
@@ -36,12 +34,11 @@ export default function ProductCategrories() {
                         <button key={category.categoryName} onClick={() => divideByCategory(category)}>
                             {category.categoryName}
                         </button>
-                        
                     </>
                 ))}
             </div>
             <div id="card-container">
-                <DisplayByCategory name={category.name} selectedCategory={selectedCategory}/>
+                <DisplayByCategory name={category.name} selectedCategory={selectedCategory} />
             </div>
         </div>
 
