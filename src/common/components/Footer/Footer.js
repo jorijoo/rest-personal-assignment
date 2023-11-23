@@ -18,19 +18,14 @@ export const Footer = () => {
             <h4>Tietoa Daavidin divarista</h4>
             <ul className="list-unstyled">
               <li>
-                <a href="#" className="footer-link">
-                  Lorem ipsum dolor
-                </a>
+                Daavidin divari on vuodesta 1929 toiminut kauppa.
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Sit amet
-                </a>
+                Daavidin divariin on tervetullut koko perhe.
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Consectetur
-                </a>
+                Täällä asiakkaat ja tuotteet otetaan tosissaan. 
+                Tule tekemään löytöjä.
               </li>
             </ul>
           </div>
@@ -38,13 +33,13 @@ export const Footer = () => {
             <h4>Asiakaspalvelu</h4>
             <ul className="list-unstyled">
               <li>
-                <a href="#" className="footer-link">
+                <a href="./Faq" className="footer-link">
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Toimitukset
+                <a href="./Contacts" className="footer-link">
+                  Yhteystiedot
                 </a>
               </li>
               <li>

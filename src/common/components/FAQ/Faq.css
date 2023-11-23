@@ -1,0 +1,8 @@
+.accordion-item {
+    border: var(--bs-accordion-border-width) solid #212529;
+    background-color:#efe8e0; 
+}
+
+.accordion {
+    --bs-accordion-bg: #efe8e0;
+}
