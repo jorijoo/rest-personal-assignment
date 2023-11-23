@@ -1,0 +1,22 @@
+.quantity-button {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.quantity-button:hover {
+  background-color: #e0e0e0;
+}
+
+.quantity-button:active {
+  transform: scale(0.95);
+}
+
+.quantity-button:focus {
+  outline: 2px solid blue;
+}
