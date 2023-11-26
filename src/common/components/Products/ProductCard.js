@@ -8,16 +8,16 @@ const ProductCard = ({ product }) => {
       <Link to={`/product/${product.id}`} className="text-decoration-none">
         <div className="productCard-card mb-5 p-2 border border-dark border-1 rounded">
           <img
-            src={product.image}
-            alt={product.name}
+            src={product.imageUrl}
+            alt={product.productName}
             className="productCard-image card-img-top"
           />
           <div className="productCard-body card-body d-flex flex-column">
             <h5 className="productCard-title card-title mb-1 text-dark product-title">
-              {product.name}
+              {product.productName}
             </h5>
             <p className="productCard-text card-text text-dark product-title">
-              {product.description}
+              {product.productDescription}
             </p>
             <p className="productCard-price card-text fw-bold text-dark">
               €{product.price}
