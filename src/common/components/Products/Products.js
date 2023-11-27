@@ -16,8 +16,14 @@ export default function Products() {
     // get categories from server
     useEffect(() => {
         const getCategory = async () => {
-            const result = await axios.get(categoryURL);
-            setCategory(result.data);
+            try {
+                const result = await axios.get(categoryURL);
+                setCategory(result.data);
+                
+            } catch (e) {
+                console.log(e);
+            }
+
         }
         getCategory();
     }, [])
@@ -29,6 +35,7 @@ export default function Products() {
     return (
         <div id="container">
             <div id="button-container">
+                <button onClick={() => (setSelectedCategory(null))}>All</button>
                 {category.map((category) => (
                     <>
                         <button key={category.categoryName} onClick={() => divideByCategory(category)}>
