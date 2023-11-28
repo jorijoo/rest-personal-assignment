@@ -1,4 +1,6 @@
-button {
+/* this piece of css is causing issues, espicially the container. 11-28-2023. */
+
+/* button {
   margin-top: 1.5rem;
   margin-bottom: -0.35rem;
 }
@@ -18,4 +20,4 @@ button {
   display: flex;
   flex: 2;
   margin: 0;
-}
+} */

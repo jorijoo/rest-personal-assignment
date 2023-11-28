@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  const closeNavbar = () => setIsNavCollapsed(true);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,17 +40,21 @@ const Navbar = () => {
         >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">
+              <NavLink to="/" className="nav-link" onClick={closeNavbar}>
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/products" className="nav-link">
+              <NavLink
+                to="/products"
+                className="nav-link"
+                onClick={closeNavbar}
+              >
                 Products
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/link3" className="nav-link">
+              <NavLink to="/link3" className="nav-link" onClick={closeNavbar}>
                 Link3
               </NavLink>
             </li>

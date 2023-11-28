@@ -60,7 +60,7 @@
   .navbar-collapse {
     background-color: #37394b;
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
     width: 50%;
     height: 100%;
@@ -78,5 +78,11 @@
     right: 10px;
     top: 25px;
     z-index: 1000;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand img {
+    display: none;
   }
 }
