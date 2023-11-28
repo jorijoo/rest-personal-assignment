@@ -76,7 +76,7 @@
   .navbar-toggler {
     position: fixed;
     right: 10px;
-    top: 10px;
+    top: 25px;
     z-index: 1000;
   }
 }

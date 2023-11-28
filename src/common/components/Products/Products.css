@@ -1,23 +1,21 @@
-button{
-    margin-top: 1.50rem;
-    margin-bottom: -0.35rem;
+button {
+  margin-top: 1.5rem;
+  margin-bottom: -0.35rem;
 }
 
-#container{
-    display: flex;
-    flex-direction: row;
+#container {
+  display: flex;
+  flex-direction: row;
 }
 
-#button-container{
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-    
+#button-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
 }
 
-#card-container{
-    display: flex;
-    flex: 2;
-    margin: 0;
+#card-container {
+  display: flex;
+  flex: 2;
+  margin: 0;
 }
-
