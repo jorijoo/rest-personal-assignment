@@ -21,3 +21,14 @@
   flex: 2;
   margin: 0;
 } */
+
+#button-container {
+  display: flex;
+  justify-content: center; /* Centers items on the main axis (horizontally) */
+  flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+  gap: 10px; /* Optional: adds some space between the buttons */
+}
+
+#button-container button {
+  margin: 5px; /* Optional: adds margin around each button for spacing */
+}
