@@ -22,7 +22,10 @@ const DisplayByCategory = ({ selectedCategory }) => {
       } catch (error) {
         console.log(error.message);
       }
+
+      
     };
+    fetchData()
   }, [selectedCategory]);
 
   // Check if products have any items in it, if not show category and text to tell
