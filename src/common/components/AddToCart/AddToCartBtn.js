@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 
 export const AddToCartBtn = ({ product, setCartItems, cartItems }) => {
-  console.log(product, setCartItems, cartItems);
   const addToCart = async () => {
     try {
       // Tarkista tuotteen saatavuus paikallisesta backendistä
