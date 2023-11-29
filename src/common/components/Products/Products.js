@@ -1,13 +1,12 @@
-import { React, useState, useEffect } from 'react'
-import axios from 'axios'
-import "./Products.css"
-import DisplayByCategory from './DisplayByCategory';
+import { React, useState, useEffect } from "react";
+import axios from "axios";
+import "./Products.css";
+import DisplayByCategory from "./DisplayByCategory";
 
 //server link for categories
 const categoryURL = "http://big.kapsi.fi/categories";
 
 export default function Products() {
-
     //Categories from the servers /categories
     const [category, setCategory] = useState([]);
     // Save the selected category from the pressed button
@@ -50,5 +49,3 @@ export default function Products() {
         </div>
 
     );
-
-}

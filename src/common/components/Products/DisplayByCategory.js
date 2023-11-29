@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 const productsURL = "https://big.kapsi.fi/products";
 
 const DisplayByCategory = ({ selectedCategory }) => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {//Modified to await async
@@ -23,7 +23,6 @@ const DisplayByCategory = ({ selectedCategory }) => {
         console.log(error.message);
       }
     };
-    fetchData();
   }, [selectedCategory]);
 
   // Check if products have any items in it, if not show category and text to tell
