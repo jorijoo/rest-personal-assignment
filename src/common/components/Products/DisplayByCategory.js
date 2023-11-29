@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 const productsURL = "https://big.kapsi.fi/products";
 
 const DisplayByCategory = ({ selectedCategory }) => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     axios
@@ -13,12 +13,13 @@ const DisplayByCategory = ({ selectedCategory }) => {
       .then((res) => {
         // Filter products based on selected category
         const filteredProducts = selectedCategory
-          ? res.data.filter((product) => product.category === selectedCategory.categoryName)
+          ? res.data.filter(
+              (product) => product.category === selectedCategory.categoryName
+            )
           : res.data;
-        setProducts(filteredProducts)
+        setProducts(filteredProducts);
       })
       .catch((err) => console.log(err.message));
-
   }, [selectedCategory]);
 
   return (

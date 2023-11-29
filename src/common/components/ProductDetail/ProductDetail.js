@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
+import { AddToCartBtn } from "../AddToCart/AddToCartBtn";
 
-const ProductDetail = () => {
+const ProductDetail = ({ cartItems, setCartItems }) => {
+  //Haetaan tuotteen id URL:sta käyttämällä params
   let { id } = useParams();
+
+  //Tilamuuttuja tuotteelle
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -13,11 +17,9 @@ const ProductDetail = () => {
         const response = await axios.get(
           `https://big.kapsi.fi/api/products/${id}`
         );
-        console.log("Tuote ladattu:", response.data); // Lisää tämä rivi
         setProduct(response.data);
       } catch (error) {
         console.error("Virhe tuotteen haussa:", error);
-        // Voit myös lisätä tilamuuttujan virheen näyttämistä varten
       }
     };
 
@@ -43,9 +45,12 @@ const ProductDetail = () => {
             <h1 className="display-4">{product.productName}</h1>
             <p className="lead">{product.productDescription}</p>
             <p className="price h3">€{product.price}</p>
-            <button className="btn btn-primary btn-lg">
-              Lisää ostoskoriin
-            </button>
+
+            <AddToCartBtn
+              product={product}
+              setCartItems={setCartItems}
+              cartItems={cartItems}
+            />
           </div>
         </div>
       </div>
