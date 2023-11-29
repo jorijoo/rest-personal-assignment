@@ -14,9 +14,7 @@ const ProductDetail = ({ cartItems, setCartItems }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `https://big.kapsi.fi/api/products/${id}`
-        );
+        const response = await axios.get(`https://big.kapsi.fi/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error("Virhe tuotteen haussa:", error);
