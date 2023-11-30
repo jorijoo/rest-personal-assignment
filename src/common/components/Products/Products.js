@@ -1,52 +1,52 @@
-import { React, useState, useEffect } from "react";
+//Import react pois aaltosulkeiden sisältä
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Products.css";
 import DisplayByCategory from "./DisplayByCategory";
 
-//server link for categories
 const categoryURL = "http://big.kapsi.fi/categories";
 
 export default function Products() {
-    //Categories from the servers /categories
-    const [category, setCategory] = useState([]);
-    // Save the selected category from the pressed button
-    const [selectedCategory, setSelectedCategory] = useState(null);
+  const [category, setCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-    // get categories from server
-    useEffect(() => {
-        const getCategory = async () => {
-            try {
-                const result = await axios.get(categoryURL);
-                setCategory(result.data);
-                
-            } catch (e) {
-                console.log(e);
-            }
+  useEffect(() => {
+    const getCategory = async () => {
+      try {
+        const result = await axios.get(categoryURL);
+        setCategory(result.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getCategory();
+  }, []);
 
-        }
-        getCategory();
-    }, [])
+  function divideByCategory(category) {
+    setSelectedCategory(category);
+  }
 
-    function divideByCategory(category) {
-        setSelectedCategory(category);
-    }
-
-    return (
-        <div id="container">
-            <div id="button-container">
-                <button onClick={() => (setSelectedCategory(null))}>All</button>
-                {category.map((category) => (
-                    <>
-                        <button key={category.categoryName} onClick={() => divideByCategory(category)}>
-                            {category.categoryName}
-                        </button>
-                    </>
-                ))}
-            </div>
-            <div id="card-container">
-                <DisplayByCategory name={category.name} selectedCategory={selectedCategory} />
-            </div>
-        </div>
-
-    )
+  return (
+    <div id="container">
+      <div id="button-container">
+        <button onClick={() => setSelectedCategory(null)}>All</button>
+        {category.map((category) => (
+          //Tähän key atribuutti, oli ennen buttonissa
+          <React.Fragment key={category.categoryName}>
+            <button onClick={() => divideByCategory(category)}>
+              {category.categoryName}
+            </button>
+          </React.Fragment>
+        ))}
+      </div>
+      <div id="card-container">
+        {/* Tämä varmistaa, että oikea propsi lähtee displayByCategory komponentille. Ilman conditional
+            renderingiä tulee runtime error */}
+        <DisplayByCategory
+          name={selectedCategory?.categoryName}
+          selectedCategory={selectedCategory}
+        />
+      </div>
+    </div>
+  );
 }
