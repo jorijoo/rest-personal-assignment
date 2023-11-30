@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import "./ProductDetail.css";
+import { AddToCartBtn } from "../AddToCart/AddToCartBtn";
 
-const ProductDetail = () => {
+const ProductDetail = ({ cartItems, setCartItems }) => {
+  //Haetaan tuotteen id URL:sta käyttämällä params
   let { id } = useParams();
+
+  //Tilamuuttuja tuotteelle
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Tähän backendistä haku aikanaan
-    const exampleProduct = {
-      id: id,
-      name: "Esimerkkituote",
-      description: "Esimerkkituotteen kuvaus.",
-      price: "123.45",
-      image: "/exampleNikes.jpg",
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`https://big.kapsi.fi/products/${id}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Virhe tuotteen haussa:", error);
+      }
     };
-    setProduct(exampleProduct);
+
+    fetchProduct();
   }, [id]);
 
   if (!product) {
@@ -26,16 +32,23 @@ const ProductDetail = () => {
     <div className="container mt-5 mb-5">
       <div className="row">
         <div className="col-md-6">
-          <img src={product.image} alt={product.name} className="img-fluid" />
+          <img
+            src={product.imageUrl}
+            alt={product.productName}
+            className="img-fluid"
+          />
         </div>
         <div className="col-md-6">
           <div className="product-detail">
-            <h1 className="display-4">{product.name}</h1>
-            <p className="lead">{product.description}</p>
+            <h1 className="display-4">{product.productName}</h1>
+            <p className="lead">{product.productDescription}</p>
             <p className="price h3">€{product.price}</p>
-            <button className="btn btn-primary btn-lg">
-              Lisää ostoskoriin
-            </button>
+
+            <AddToCartBtn
+              product={product}
+              setCartItems={setCartItems}
+              cartItems={cartItems}
+            />
           </div>
         </div>
       </div>

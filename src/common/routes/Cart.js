@@ -1,88 +1,82 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartCard from "../components/Cart/CartCard";
 import OrderSummary from "../components/Cart/OrderSummary";
 
-const Cart = () => {
+const Cart = ({ cartItems, setCartItems }) => {
   const backImageUrl = "/Group7.png";
 
-  // Dummy data
-  const [productsInCart, setProductsInCart] = useState([
-    {
-      id: 1,
-      productName: "Macbook Pro 13",
-      price: "1200.00",
-      imageUrl: null,
-      category: "Computers",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      productName: "iPhone 13",
-      price: "700.00",
-      imageUrl: null,
-      category: "Phones",
-      quantity: 1,
-    },
-    {
-      id: 3,
-      productName: "Umbro football",
-      price: "25.00",
-      imageUrl: null,
-      category: "Sports",
-      quantity: 1,
-    },
-    {
-      id: 4,
-      productName: "Fender Stratocaster",
-      price: "1550.00",
-      imageUrl: null,
-      category: "Music",
-      quantity: 1,
-    },
-    {
-      id: 5,
-      productName: "Gipson Les Paul",
-      price: "2100.00",
-      imageUrl: null,
-      category: "Music",
-      quantity: 1,
-    },
-    {
-      id: 6,
-      productName: "Google Pixel",
-      price: "780.00",
-      imageUrl: null,
-      category: "Phones",
-      quantity: 1,
-    },
-  ]);
-
   const removeProduct = (productId) => {
-    setProductsInCart((currentProducts) =>
+    setCartItems((currentProducts) =>
       currentProducts.filter((product) => product.id !== productId)
     );
+
+    // Nouda nykyinen ostoskori Local Storagesta
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Poista tuote ostoskorista Local Storagessa
+    const updatedCart = currentCart.filter(
+      (product) => product.id !== productId
+    );
+
+    // Päivitä Local Storage uudella ostoskorilla
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const increaseQuantity = (productId) => {
-    setProductsInCart((currentProducts) =>
+    setCartItems((currentProducts) =>
       currentProducts.map((product) =>
         product.id === productId
           ? { ...product, quantity: product.quantity + 1 }
           : product
       )
     );
+
+    // Nouda nykyinen ostoskori Local Storagesta
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Etsi lisättävä tuote
+    const productToAdd = currentCart.find(
+      (product) => product.id === productId
+    );
+
+    if (productToAdd) {
+      // Päivitä tuotteen määrää
+      productToAdd.quantity += 1;
+    }
+
+    // Päivitä Local Storage kaikilla tuotteilla
+    localStorage.setItem("cart", JSON.stringify(currentCart));
   };
 
   const decreaseQuantity = (productId) => {
-    setProductsInCart((currentProducts) =>
+    setCartItems((currentProducts) =>
       currentProducts.map((product) =>
         product.id === productId && product.quantity > 1
           ? { ...product, quantity: product.quantity - 1 }
           : product
       )
     );
+
+    // Nouda nykyinen ostoskori Local Storagesta
+    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Etsi vähennettävä tuote
+    const productToDecrease = currentCart.find(
+      (product) => product.id === productId
+    );
+
+    if (productToDecrease && productToDecrease.quantity > 1) {
+      // Vähennä tuotteen määrää
+      productToDecrease.quantity -= 1;
+    } else {
+      // Poista tuote ostoskorista, jos määrä on 1
+      const updatedCart = currentCart.filter(
+        (product) => product.id !== productId
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
   };
 
   return (
@@ -99,7 +93,7 @@ const Cart = () => {
       </Row>
       <Row>
         <Col md={8}>
-          {productsInCart.map((product) => (
+          {cartItems.map((product) => (
             <CartCard
               key={product.id}
               productName={product.productName}
@@ -108,11 +102,12 @@ const Cart = () => {
               increaseQuantity={() => increaseQuantity(product.id)}
               decreaseQuantity={() => decreaseQuantity(product.id)}
               removeProduct={() => removeProduct(product.id)}
+              imageUrl={product.imageUrl}
             />
           ))}
         </Col>
         <Col md={4}>
-          <OrderSummary products={productsInCart} />
+          <OrderSummary products={cartItems} />
         </Col>
       </Row>
     </Container>
