@@ -1,0 +1,36 @@
+.form_container{
+    width: 30%;
+    background-color: #efe8e0;
+    border-color: black;
+    border-style: solid;
+}
+
+@media screen and (max-whidth: 800px) {
+    .form_container{
+        width: 45%;
+       
+    }
+} 
+    
+@media screen and (max-whidth: 700px) {
+    .form_container{
+        width: 65%;
+    }
+} 
+
+.login_template {
+    background: #efe8e0;
+}
+
+.bg-primary{
+    background-color: #efe8e0;
+}
+
+.form {
+    border-color: black;
+    border-style: solid;
+}
+
+.form-control {
+    border-color: black;
+}

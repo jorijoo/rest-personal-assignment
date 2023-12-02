@@ -6,6 +6,8 @@ import Cart from "./Cart";
 import Faq from "../components/FAQ/Faq";
 import Contacts from "../components/Contacts/Contacts";
 import Products from "../components/Products/Products";
+import Login from "../components/Login/Login";
+import Signup from "../components/Login/Signup";
 
 const RoutesComponent = ({ cartItems, setCartItems }) => {
   return (
@@ -24,6 +26,8 @@ const RoutesComponent = ({ cartItems, setCartItems }) => {
       />
       <Route path="/faq" element={<Faq />} />
       <Route path="/contacts" element={<Contacts />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 };
