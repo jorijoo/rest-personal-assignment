@@ -1,3 +1,22 @@
 /*
  *  Please use bootstrap styles instead
  */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #efe8e0 !important;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex-grow: 1;
+}

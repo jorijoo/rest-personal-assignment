@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./common/components/Navbar/Navbar";
 import Footer from "./common/components/Footer/Footer";
 import RoutesComponent from "./common/routes/RoutesComponent";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
   // Tarkistaan onko tuotteita ostoskorissa localStoragesta
@@ -20,9 +23,11 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <div className="content-wrapper">
         <Navbar />
-        <RoutesComponent cartItems={cartItems} setCartItems={setCartItems} />
+          <RoutesComponent cartItems={cartItems} setCartItems={setCartItems} />
         <Footer />
+        </div>
       </div>
     </Router>
   );
