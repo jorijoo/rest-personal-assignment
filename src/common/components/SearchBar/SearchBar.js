@@ -2,8 +2,8 @@ import React from "react";
 
 export const SearchBar = () => {
   return (
-    <form className="form-inline my-2 my-lg-0">
-      <div className="col-6 col-md-8 col-lg-10 px-0">
+    <form className="form-inline my-2 my-lg-0 search-bar">
+      <div className="col-9 col-md-11 col-lg-12 px-0">
         <input
           className="form-control mr-sm-2 rounded-pill"
           type="search"
