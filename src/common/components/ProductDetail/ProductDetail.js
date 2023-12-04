@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
-import { AddToCartBtn } from "../AddToCart/AddToCartBtn";
+import { cartContentSignal } from "../../signals/CartSignals";
 
-const ProductDetail = ({ cartItems, setCartItems }) => {
+const ProductDetail = () => {
   //Haetaan tuotteen id URL:sta käyttämällä params
   let { id } = useParams();
 
@@ -28,6 +28,25 @@ const ProductDetail = ({ cartItems, setCartItems }) => {
     return <div>Ladataan...</div>;
   }
 
+  /*
+  ------------------------------
+  Function to add selected item in cart
+  ------------------------------
+  */
+  const addToCart = async () => {
+    const currentProduct = cartContentSignal.value.find(p => p.id === product.id)
+
+    if (currentProduct) {
+      currentProduct.quantity++
+      cartContentSignal.value = [...cartContentSignal.value]
+    }
+    else {
+      cartContentSignal.value = [...cartContentSignal.value, { ...product, quantity: 1 }]
+    }
+
+    alert("Tuote '"+ product.productName +"' lisätty ostoskoriin");
+  };
+
   return (
     <div className="container mt-5 mb-5">
       <div className="row">
@@ -43,12 +62,7 @@ const ProductDetail = ({ cartItems, setCartItems }) => {
             <h1 className="display-4">{product.productName}</h1>
             <p className="lead">{product.productDescription}</p>
             <p className="price h3">€{product.price}</p>
-
-            <AddToCartBtn
-              product={product}
-              setCartItems={setCartItems}
-              cartItems={cartItems}
-            />
+            <button className="btn btn-primary btn-lg" onClick={() => addToCart()}>Lisää ostoskoriin</button>
           </div>
         </div>
       </div>

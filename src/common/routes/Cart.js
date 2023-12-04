@@ -3,81 +3,26 @@ import { Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartCard from "../components/Cart/CartCard";
 import OrderSummary from "../components/Cart/OrderSummary";
+import { effect } from "@preact/signals-react";
+import { cartContentSignal } from "../signals/CartSignals";
 
-const Cart = ({ cartItems, setCartItems }) => {
+/*
+---------------------------------------
+Syncs localStorage with cartContentSignal changes.
+---------------------------------------
+*/
+effect(() => {
+  const product = cartContentSignal.value;
+
+  if (product.length != 0) {
+    const updatedStorageCart = cartContentSignal.value;
+    localStorage.setItem("cart", JSON.stringify(updatedStorageCart));
+  }
+
+})
+
+const Cart = () => {
   const backImageUrl = "/Group7.png";
-
-  const removeProduct = (productId) => {
-    setCartItems((currentProducts) =>
-      currentProducts.filter((product) => product.id !== productId)
-    );
-
-    // Nouda nykyinen ostoskori Local Storagesta
-    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Poista tuote ostoskorista Local Storagessa
-    const updatedCart = currentCart.filter(
-      (product) => product.id !== productId
-    );
-
-    // Päivitä Local Storage uudella ostoskorilla
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const increaseQuantity = (productId) => {
-    setCartItems((currentProducts) =>
-      currentProducts.map((product) =>
-        product.id === productId
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
-    );
-
-    // Nouda nykyinen ostoskori Local Storagesta
-    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Etsi lisättävä tuote
-    const productToAdd = currentCart.find(
-      (product) => product.id === productId
-    );
-
-    if (productToAdd) {
-      // Päivitä tuotteen määrää
-      productToAdd.quantity += 1;
-    }
-
-    // Päivitä Local Storage kaikilla tuotteilla
-    localStorage.setItem("cart", JSON.stringify(currentCart));
-  };
-
-  const decreaseQuantity = (productId) => {
-    setCartItems((currentProducts) =>
-      currentProducts.map((product) =>
-        product.id === productId && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    );
-
-    // Nouda nykyinen ostoskori Local Storagesta
-    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Etsi vähennettävä tuote
-    const productToDecrease = currentCart.find(
-      (product) => product.id === productId
-    );
-
-    if (productToDecrease && productToDecrease.quantity > 1) {
-      // Vähennä tuotteen määrää
-      productToDecrease.quantity -= 1;
-    } else {
-      // Poista tuote ostoskorista, jos määrä on 1
-      const updatedCart = currentCart.filter(
-        (product) => product.id !== productId
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-    }
-  };
 
   return (
     <Container className="mt-5">
@@ -93,21 +38,15 @@ const Cart = ({ cartItems, setCartItems }) => {
       </Row>
       <Row>
         <Col md={8}>
-          {cartItems.map((product) => (
+          {cartContentSignal.value.map((product) => (
             <CartCard
               key={product.id}
-              productName={product.productName}
-              price={product.price}
-              quantity={product.quantity}
-              increaseQuantity={() => increaseQuantity(product.id)}
-              decreaseQuantity={() => decreaseQuantity(product.id)}
-              removeProduct={() => removeProduct(product.id)}
-              imageUrl={product.imageUrl}
+              product={product}
             />
           ))}
         </Col>
         <Col md={4}>
-          <OrderSummary products={cartItems} />
+          <OrderSummary products={cartContentSignal.value} />
         </Col>
       </Row>
     </Container>
