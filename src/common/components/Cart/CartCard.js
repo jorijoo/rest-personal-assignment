@@ -1,23 +1,10 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import "./ButtonStyles.css";
 import { cartContentSignal } from "../../signals/CartSignals";
 
 const CartCard = (params) => {
-
-  const [quantity, setQuantity] = useState(0)
   const product = params.product;
-
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const currentProductInCart = cartItems.find((item) => item.id === product.id);
-
-    if (currentProductInCart) {
-      setQuantity(currentProductInCart.quantity)
-    }
-
-  }, []);
-
   const displayImage = product.imageUrl || "/Rectangle17.png";
   const closeIconUrl = "/Group6.png";
 
@@ -31,7 +18,6 @@ const CartCard = (params) => {
 
     if (selectedProduct) {
       selectedProduct.quantity++;
-      setQuantity(selectedProduct.quantity)
       cartContentSignal.value = [...cartContentSignal.value]
     }
   }
@@ -52,7 +38,6 @@ const CartCard = (params) => {
         return
       }
 
-      setQuantity(selectedProduct.quantity)
       cartContentSignal.value = [...cartContentSignal.value]
     }
   }
@@ -104,7 +89,7 @@ const CartCard = (params) => {
           </Col>
           <Col md={3}>
             <div>{`Hinta: €${product.price}`}</div>
-            <div>{`Määrä: ${quantity}`}</div>
+            <div>{`Määrä: ${cartContentSignal.value.find(prod => prod.id === product.id).quantity}`}</div>
             <button className="quantity-button" onClick={() => decreaseQuantity()}>
               -
             </button>
