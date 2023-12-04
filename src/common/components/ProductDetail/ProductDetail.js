@@ -16,6 +16,7 @@ const ProductDetail = () => {
       try {
         const response = await axios.get(`https://big.kapsi.fi/products/${id}`);
         setProduct(response.data);
+
       } catch (error) {
         console.error("Virhe tuotteen haussa:", error);
       }
@@ -34,17 +35,30 @@ const ProductDetail = () => {
   ------------------------------
   */
   const addToCart = async () => {
-    const currentProduct = cartContentSignal.value.find(p => p.id === product.id)
+    const currentProduct = cartContentSignal.value.find(p => p.id === product.id);
 
     if (currentProduct) {
-      currentProduct.quantity++
-      cartContentSignal.value = [...cartContentSignal.value]
+      if (currentProduct.quantity >= product.unitsStored) {
+        alert(`Tuotetta ostoskorissasi on jo (${currentProduct.quantity}) kpl,varastosaldo ylittyy joten tuotetta ei lisätty ostoskoriin!`);
+        return;
+      }
+      currentProduct.quantity++;
+      cartContentSignal.value = [...cartContentSignal.value];
     }
     else {
-      cartContentSignal.value = [...cartContentSignal.value, { ...product, quantity: 1 }]
+      cartContentSignal.value = [...cartContentSignal.value, { ...product, quantity: 1 }];
     }
 
-    alert("Tuote '"+ product.productName +"' lisätty ostoskoriin");
+    alert("Tuote '" + product.productName + "' lisätty ostoskoriin");
+  };
+
+  /*
+  -----------------
+   To change stock number color if units stock is low : good
+  -----------------
+  */
+  const styleForStockNumber = {
+    color: product.unitsStored < 5 ? 'red' : 'green'
   };
 
   return (
@@ -61,6 +75,7 @@ const ProductDetail = () => {
           <div className="product-detail">
             <h1 className="display-4">{product.productName}</h1>
             <p className="lead">{product.productDescription}</p>
+            <p className="lead">Varastossa: <b style={styleForStockNumber}>{product.unitsStored} </b> kpl</p>
             <p className="price h3">€{product.price}</p>
             <button className="btn btn-primary btn-lg" onClick={() => addToCart()}>Lisää ostoskoriin</button>
           </div>
