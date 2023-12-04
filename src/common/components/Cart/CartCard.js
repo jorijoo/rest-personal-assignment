@@ -14,11 +14,15 @@ const CartCard = (params) => {
  ----------------------------------
   */
   const increaseQuantity = () => {
-    const selectedProduct = cartContentSignal.value.find(prod => prod.id === product.id)
+    const selectedProduct = cartContentSignal.value.find(prod => prod.id === product.id);
 
     if (selectedProduct) {
+      if (selectedProduct.quantity >= product.unitsStored) {
+        alert("Tuotetta ei ole varastossa haluamaasi määrää!");
+        return;
+      }
       selectedProduct.quantity++;
-      cartContentSignal.value = [...cartContentSignal.value]
+      cartContentSignal.value = [...cartContentSignal.value];
     }
   }
 
@@ -28,19 +32,19 @@ const CartCard = (params) => {
  ----------------------------------
   */
   const decreaseQuantity = () => {
-    const selectedProduct = cartContentSignal.value.find(prod => prod.id === product.id)
+    const selectedProduct = cartContentSignal.value.find(prod => prod.id === product.id);
 
     if (selectedProduct) {
       selectedProduct.quantity--;
 
-      if (selectedProduct.quantity == 0) {
-        removeItem()
-        return
+      if (selectedProduct.quantity === 0) {
+        removeItem();
+        return;
       }
 
-      cartContentSignal.value = [...cartContentSignal.value]
+      cartContentSignal.value = [...cartContentSignal.value];
     }
-  }
+  };
 
   /*
   ----------------------------------
@@ -50,16 +54,16 @@ const CartCard = (params) => {
  ----------------------------------
   */
   const removeItem = () => {
-    const newContent = cartContentSignal.value.filter(prod => prod.id !== product.id)
+    const newContent = cartContentSignal.value.filter(prod => prod.id !== product.id);
 
-    if (newContent.length == 0) {
-      cartContentSignal.value = []
+    if (newContent.length === 0) {
+      cartContentSignal.value = [];
       localStorage.setItem("cart", JSON.stringify([]));
     }
     else {
-      cartContentSignal.value = newContent
+      cartContentSignal.value = newContent;
     }
-  }
+  };
 
   return (
     <Card className="mb-3 shadow rounded position-relative">
@@ -89,6 +93,7 @@ const CartCard = (params) => {
           </Col>
           <Col md={3}>
             <div>{`Hinta: €${product.price}`}</div>
+            <div>{`Varastossa: ${product.unitsStored} kpl`}</div>
             <div>{`Määrä: ${cartContentSignal.value.find(prod => prod.id === product.id).quantity}`}</div>
             <button className="quantity-button" onClick={() => decreaseQuantity()}>
               -
