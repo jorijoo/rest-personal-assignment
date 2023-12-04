@@ -8,6 +8,7 @@ import Contacts from "../components/Contacts/Contacts";
 import Products from "../components/Products/Products";
 import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
+import Checkout from "../components/Checkout/Checkout";
 
 const RoutesComponent = () => {
   return (
@@ -20,6 +21,7 @@ const RoutesComponent = () => {
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Routes>
   );
 };
