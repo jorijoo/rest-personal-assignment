@@ -6,32 +6,32 @@ import ProductItem from "../ProductItems/ProductItem";
 export const ProductList = () => {
   const products = [
     {
-      price: "59.99€",
-      image: "/exampleNikes.jpg",
-      description: "Nike Shoes",
+      price: "779.99€",
+      image: "https://big.kapsi.fi/products/camera_retro.jpg",
+      description: "Canon Retro 1970",
     },
     {
-      price: "59.99€",
-      image: "/exampleNikes.jpg",
-      description: "Nike Shoes",
-    },
-
-    {
-      price: "59.99€",
-      image: "/exampleNikes.jpg",
-      description: "Nike Shoes",
+      price: "2989.99€",
+      image: "https://big.kapsi.fi/products/camera_scoped.jpg",
+      description: "Kodak Scope",
     },
 
     {
-      price: "59.99€",
-      image: "/exampleNikes.jpg",
-      description: "Nike Shoes",
+      price: "9.99€",
+      image: "https://big.kapsi.fi/products/moustache_rainbow.jpg",
+      description: "Viikset 3",
     },
 
     {
-      price: "59.99€",
-      image: "/exampleNikes.jpg",
-      description: "Nike Shoes",
+      price: "12.99€",
+      image: "https://big.kapsi.fi/products/scale_model_tree_house.jpg",
+      description: "Puutalo",
+    },
+
+    {
+      price: "128.99€",
+      image: "https://big.kapsi.fi/products/tattoo_pen_hairy_evil.jpg",
+      description: "Parker 3",
     },
   ];
 
