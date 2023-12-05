@@ -1,38 +1,52 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { signal } from "@preact/signals-react";
+import { loginStatusSignal } from "../../signals/LoginStatusSignal";
 
-const Login = () => {
+
+
+const Login = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
   const [pw, setPw] = useState("");
   const token = signal("");
+  const navigate = useNavigate(); 
 
-  //Tähän preventDefault funktio, joka estää lomakkeen lähetyksen
+  // Prevent default form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Tähän pienellä /login, oli Login, joka ei toiminut
     axios
-      .postForm("http://localhost:3000/login", { username, pw })
-      .then((resp) => (token.value = resp.data.jwtToken))
-      .catch((error) => console.log(error.message));
+      .post("http://localhost:3001/login", { username, pw })
+      .then((resp) => {
+        token.value = resp.data.jwtToken;
+        localStorage.setItem("token", resp.data.jwtToken);
+        // Update login status and navigate to the dashboard
+        loginStatusSignal.value = resp.data.jwtToken ? "Login Successful" : "Login Failed";
+        if (resp.data.jwtToken) {
+          navigate("/user"); // Use navigate to go to the dashboard route on success
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        loginStatusSignal.value = "Login Failed";
+      });
   };
 
   return (
     <div className="login_template d-flex justify-content-center align-items-center vh-100">
       <div className="form_container p-5 rounded">
-        {/* Tähän onSubmit joka kutsuu handleSubmit funktiota */}
+        {loginStatusSignal.value && <p>{loginStatusSignal.value}</p>}
         <form onSubmit={handleSubmit}>
           <h3 className="text-center">Sign In</h3>
           <div className="mb-2">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Username</label>
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              type="email"
-              placeholder="Enter Email"
+              type="text"
+              placeholder="Enter Username"
               className="form-control"
             />
           </div>

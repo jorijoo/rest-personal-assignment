@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { cartContentSignal } from "../../signals/CartSignals";
 import { useSignalEffect } from "@preact/signals-react";
+import { loginStatusSignal } from "../../signals/LoginStatusSignal";
 
 const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -31,11 +32,12 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <a className="navbar-brand" href="/">
-          <img src="/logoMtaty.png" alt="Logo" width="70" height="70" />
-        </a>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container">
+          {/* Muuta tämä NavLinkiksi */}
+          <NavLink className="navbar-brand" to="/">
+            <img src="/logoMtaty.png" alt="Logo" width="70" height="70" />
+          </NavLink>
 
         <div className="search-bar">
           <SearchBar />
@@ -63,11 +65,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                to="/products"
-                className="nav-link"
-                onClick={closeNavbar}
-              >
+              <NavLink to="/products" className="nav-link" onClick={closeNavbar}>
                 Products
               </NavLink>
             </li>
@@ -79,14 +77,21 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav navbar-right">
             <li className="nav-item">
-              <a href="/cart" className="nav-link">
-                <FontAwesomeIcon icon={faCartShopping} /><b className="cart-amount-number">  ( {cartItemAmount} )</b>
-              </a>
+            <NavLink to="/cart" className="nav-link">
+              <FontAwesomeIcon icon={faCartShopping} /><b className="cart-amount-number">  ( {cartItemAmount} )</b>
+            </NavLink>
             </li>
             <li className="nav-item">
-              <a href="./Login" className="nav-link">
-                Login
-              </a>
+              {/* Tarkista kirjautumistila ja näytä "oma profiili" -linkki sen perusteella */}
+              {loginStatusSignal.value === "Login Successful" ? (
+                <NavLink to="/user" className="nav-link" onClick={closeNavbar}>
+                  Oma profiili
+                </NavLink>
+              ) : (
+                <a href="/login" className="nav-link">
+                  Kirjaudu sisään
+                </a>
+              )}
             </li>
           </ul>
         </div>

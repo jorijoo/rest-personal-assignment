@@ -2,6 +2,7 @@ import { React } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import "./ButtonStyles.css";
 import { cartContentSignal } from "../../signals/CartSignals";
+import { loginStatusSignal } from "../../signals/LoginStatusSignal";
 
 const CartCard = (params) => {
   const product = params.product;
@@ -64,6 +65,9 @@ const CartCard = (params) => {
       cartContentSignal.value = newContent;
     }
   };
+
+  console.log("Kirjautumistila:", loginStatusSignal.value); 
+  console.log("Cart-tiedot:", cartContentSignal.value); 
 
   return (
     <Card className="mb-3 shadow rounded position-relative">
