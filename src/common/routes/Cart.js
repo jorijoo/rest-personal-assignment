@@ -3,23 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartCard from "../components/Cart/CartCard";
 import OrderSummary from "../components/Cart/OrderSummary";
-import { effect } from "@preact/signals-react";
 import { cartContentSignal } from "../signals/CartSignals";
-
-/*
----------------------------------------
-Syncs localStorage with cartContentSignal changes.
----------------------------------------
-*/
-effect(() => {
-  const product = cartContentSignal.value;
-
-  if (product.length != 0) {
-    const updatedStorageCart = cartContentSignal.value;
-    localStorage.setItem("cart", JSON.stringify(updatedStorageCart));
-  }
-
-})
 
 const Cart = () => {
   const backImageUrl = "/Group7.png";
