@@ -63,16 +63,19 @@ export default function Checkout() {
             return;
         }
     
-        // Dekoodaa token
         try {
+            // Dekoodaa token
             const decoded = jwtDecode(token);
-            
             const customerId = decoded.userId;
     
             const body = { customerId: customerId, products: cartContentSignal.value };
     
-            // Lähetä tilaus backendille
-            const response = await axios.post("http://localhost:3001/order", body);
+            // Lähetä tilaus backendille sisällyttäen token Authorization-headeriin
+            const response = await axios.post("http://localhost:3001/order", body, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
     
             // Jos tilaus onnistuu, tyhjennä ostoskori jne.
             cartContentSignal.value = [];
@@ -80,10 +83,20 @@ export default function Checkout() {
             alert("Tilaus lähti!");
             navigate("/");
         } catch (error) {
-            console.error("Virhe dekoodattaessa tokenia tai lähettäessä tilausta:", error);
-            // Käsittele virhetilanne, esim. näytä käyttäjälle virheilmoitus
+            if (error.response) {
+                // Virhe HTTP-pyynnössä
+                console.error("Virhe lähettäessä tilausta:", error.response);
+            } else if (error instanceof jwtDecode.InvalidTokenError) {
+                // Virhe tokenin dekoodauksessa
+                console.error("Virheellinen token:", error.message);
+            } else {
+                // Muu yleinen virhe
+                console.error("Yleinen virhe:", error.message);
+            }
         }
     };
+    
+    
     
   
     
