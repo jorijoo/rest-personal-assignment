@@ -27,7 +27,7 @@
   color: #efe8e0;
 }
 
-.navbar-nav + .navbar-nav {
+.navbar-nav+.navbar-nav {
   margin-left: auto;
 }
 
@@ -85,4 +85,8 @@
   .navbar-brand img {
     display: none;
   }
+}
+
+.cart-amount-number {
+  color: lightblue;
 }

@@ -3,6 +3,16 @@ import "./ProductCard.css";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+
+  /*
+  -----------------
+   To change stock number color if units stock is low : good
+  -----------------
+  */
+  const styleForStockNumber = {
+    color: product.unitsStored < 5 ? 'red' : 'green'
+  };
+
   return (
     <div className="productCard col-sm-12 col-md-6 col-lg-4 col-xl-3">
       <Link to={`/product/${product.id}`} className="text-decoration-none">
@@ -19,6 +29,7 @@ const ProductCard = ({ product }) => {
             <p className="productCard-text card-text text-dark product-title">
               {product.productDescription}
             </p>
+            <p className="card-text fw-bold text-dark">Varastossa: <b style={styleForStockNumber}>{product.unitsStored}</b> kpl</p>
             <p className="productCard-price card-text fw-bold text-dark">
               €{product.price}
             </p>
