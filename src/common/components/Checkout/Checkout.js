@@ -47,6 +47,26 @@ export default function Checkout() {
 
     }, []);
 
+    /**
+     * Send POST request to place order, uncomment when backend api supports order
+     * NEEDS customerId handling also, current id is only manually created for testing purposes only.
+     ----------------
+    const postOrder = async () => {
+        const body = { customerId: 123, products: cartContentSignal.value }
+
+        try {
+            const response = await axios.post("http://localhost:3001/order", body);
+
+            // If success, clear cart content.
+            cartContentSignal.value = []
+            localStorage.setItem("cart", JSON.stringify([]));
+        } catch (error) {
+            console.log(error.message);
+        }
+
+    };
+    ----------------------
+    */
     const backImageUrl = "/Group7.png";
 
     // Calculate the total price of the products
@@ -62,6 +82,12 @@ export default function Checkout() {
 
     const submitOrder = (e) => {
         e.preventDefault();
+
+        /**
+         * Uncomment below when backend supports order API, user id handling is also needed
+         * postOrder();
+         */
+
         cartContentSignal.value = []
         localStorage.setItem("cart", JSON.stringify([]));
         alert("Tilaus lähti!");
