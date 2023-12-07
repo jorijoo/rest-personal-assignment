@@ -23,8 +23,8 @@ function App() {
         <div className="content-wrapper">
           <Navbar />
           <RoutesComponent />
-          <Footer />
         </div>
+        <Footer />
       </div>
     </Router>
   );
