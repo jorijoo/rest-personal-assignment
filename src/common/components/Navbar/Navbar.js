@@ -4,12 +4,31 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { cartContentSignal } from "../../signals/CartSignals";
+import { useSignalEffect } from "@preact/signals-react";
 
 const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const [cartItemAmount, setCartItemAmount] = useState(0);
 
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
   const closeNavbar = () => setIsNavCollapsed(true);
+
+  /*
+  ----------
+  To update Shopping Cart item amount next to navbar Cart symbol
+  ----------
+  */
+  useSignalEffect(() => {
+    const products = cartContentSignal.value;
+    let sum = 0;
+
+    for (var item of products) {
+      sum += item.quantity;
+    }
+
+    setCartItemAmount(sum);
+  });
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,9 +52,8 @@ const Navbar = () => {
         </button>
 
         <div
-          className={`collapse navbar-collapse ${
-            !isNavCollapsed ? "show" : ""
-          }`}
+          className={`collapse navbar-collapse ${!isNavCollapsed ? "show" : ""
+            }`}
           id="navbarResponsive"
         >
           <ul className="navbar-nav mr-auto">
@@ -62,7 +80,7 @@ const Navbar = () => {
           <ul className="navbar-nav navbar-right">
             <li className="nav-item">
               <a href="/cart" className="nav-link">
-                <FontAwesomeIcon icon={faCartShopping} />
+                <FontAwesomeIcon icon={faCartShopping} /><b className="cart-amount-number">  ( {cartItemAmount} )</b>
               </a>
             </li>
             <li className="nav-item">

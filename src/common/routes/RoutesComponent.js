@@ -8,26 +8,20 @@ import Contacts from "../components/Contacts/Contacts";
 import Products from "../components/Products/Products";
 import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
+import Checkout from "../components/Checkout/Checkout";
 
-const RoutesComponent = ({ cartItems, setCartItems }) => {
+const RoutesComponent = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Products />} />
-      <Route
-        path="/product/:id"
-        element={
-          <ProductDetail cartItems={cartItems} setCartItems={setCartItems} />
-        }
-      />
-      <Route
-        path="/cart"
-        element={<Cart cartItems={cartItems} setCartItems={setCartItems} />}
-      />
+      <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Routes>
   );
 };
