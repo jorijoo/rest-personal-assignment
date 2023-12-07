@@ -5,7 +5,6 @@ import { loginStatusSignal } from "../../signals/LoginStatusSignal";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 
-
 const UserDashboard = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
@@ -44,11 +43,6 @@ const UserDashboard = () => {
     }
   };
 
-  // // Laske tilauksen kokonaishinta (kaikkien tuotteiden hinnat yhteensä valitettavasti)
-  // const calculateTotalPrice = (order) => {
-  //   return order.reduce((total, product) => total + (product.price * product.quantity), 0);
-  // };
-
   return (
     <Container>
       <h1 className="my-4">User Dashboard</h1>
@@ -63,6 +57,8 @@ const UserDashboard = () => {
                 <th>Product Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Image</th>
+                <th>Category</th>
               </tr>
             </thead>
             <tbody>
@@ -73,8 +69,9 @@ const UserDashboard = () => {
                   <td>{order.productName}</td>
                   <td>{order.price}</td>
                   <td>{order.quantity}</td>
+                  <td><img src={order.imageUrl} alt={order.productName} style={{ width: "50px" }} /></td>
+                  <td>{order.category}</td>
                 </tr>
-                
               ))}
             </tbody>
           </Table>
