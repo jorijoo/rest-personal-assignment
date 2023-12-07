@@ -42,11 +42,6 @@ export const Footer = () => {
                   Yhteystiedot
                 </a>
               </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Palautukset
-                </a>
-              </li>
             </ul>
           </div>
           <div className="col-12 col-md-4">
