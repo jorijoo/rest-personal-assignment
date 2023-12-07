@@ -5,6 +5,7 @@ import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CheckoutItemCard from "./CheckoutItemCard";
+import { authTokenSignal } from "../../signals/AuthTokenSignal";
 
 const productsURL = "http://localhost:3001/products";
 
@@ -56,11 +57,11 @@ export default function Checkout() {
     // ...
     
     const postOrder = async () => {
-        // Lue token localStoragesta
-        const token = localStorage.getItem("token");
+        // Käytä tokenia globaalista signaalista
+        const token = authTokenSignal.value;
         if (!token) {
-            console.log("Ei tokenia");
-            return;
+          console.log("Ei tokenia");
+          return;
         }
     
         try {

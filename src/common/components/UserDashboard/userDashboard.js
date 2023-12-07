@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { loginStatusSignal } from "../../signals/LoginStatusSignal";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
+import { authTokenSignal } from "../../signals/AuthTokenSignal";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-  const isLoggedIn = loginStatusSignal.value === "Login Successful";
+  const isLoggedIn = authTokenSignal.value !== "";
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const token = localStorage.getItem("token");
+      const token = authTokenSignal.value;
       if (token) {
         try {
           const response = await axios.get("http://localhost:3001/myorders", {
@@ -34,8 +34,9 @@ const UserDashboard = () => {
 
   const handleLogout = () => {
     try {
-      localStorage.removeItem("token");
-      loginStatusSignal.value = "Login Failed";
+      // Päivitä token-signaali tyhjäksi kirjautumisen yhteydessä
+      authTokenSignal.value = "";
+      sessionStorage.removeItem("token");
       navigate("/");
       console.log('You have been logged out.');
     } catch (error) {

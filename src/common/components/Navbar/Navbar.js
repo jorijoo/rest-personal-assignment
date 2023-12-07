@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { cartContentSignal } from "../../signals/CartSignals";
 import { useSignalEffect } from "@preact/signals-react";
-import { loginStatusSignal } from "../../signals/LoginStatusSignal";
+import { authTokenSignal } from "../../signals/AuthTokenSignal";
 
 const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -15,11 +15,7 @@ const Navbar = () => {
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
   const closeNavbar = () => setIsNavCollapsed(true);
 
-  /*
-  ----------
-  To update Shopping Cart item amount next to navbar Cart symbol
-  ----------
-  */
+  // Päivitä ostoskorin tuotteiden määrä
   useSignalEffect(() => {
     const products = cartContentSignal.value;
     let sum = 0;
@@ -31,13 +27,15 @@ const Navbar = () => {
     setCartItemAmount(sum);
   });
 
+  // Tarkista onko käyttäjä kirjautunut sisään
+  const isUserLoggedIn = authTokenSignal.value !== "";
+
   return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          {/* Muuta tämä NavLinkiksi */}
-          <NavLink className="navbar-brand" to="/">
-            <img src="/logoMtaty.png" alt="Logo" width="70" height="70" />
-          </NavLink>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <NavLink className="navbar-brand" to="/">
+          <img src="/logoMtaty.png" alt="Logo" width="70" height="70" />
+        </NavLink>
 
         <div className="search-bar">
           <SearchBar />
@@ -53,11 +51,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div
-          className={`collapse navbar-collapse ${!isNavCollapsed ? "show" : ""
-            }`}
-          id="navbarResponsive"
-        >
+        <div className={`collapse navbar-collapse ${!isNavCollapsed ? "show" : ""}`} id="navbarResponsive">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink to="/" className="nav-link" onClick={closeNavbar}>
@@ -77,20 +71,19 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav navbar-right">
             <li className="nav-item">
-            <NavLink to="/cart" className="nav-link">
-              <FontAwesomeIcon icon={faCartShopping} /><b className="cart-amount-number">  ( {cartItemAmount} )</b>
-            </NavLink>
+              <NavLink to="/cart" className="nav-link">
+                <FontAwesomeIcon icon={faCartShopping} /><b className="cart-amount-number">  ( {cartItemAmount} )</b>
+              </NavLink>
             </li>
             <li className="nav-item">
-              {/* Tarkista kirjautumistila ja näytä "oma profiili" -linkki sen perusteella */}
-              {loginStatusSignal.value === "Login Successful" ? (
+              {isUserLoggedIn ? (
                 <NavLink to="/user" className="nav-link" onClick={closeNavbar}>
                   Oma profiili
                 </NavLink>
               ) : (
-                <a href="/login" className="nav-link">
+                <NavLink to="/login" className="nav-link">
                   Kirjaudu sisään
-                </a>
+                </NavLink>
               )}
             </li>
           </ul>
