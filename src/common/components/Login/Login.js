@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3001/login", { username, pw: password })
+      .post("http://big.kapsi.fi/login", { username, pw: password })
       .then((resp) => {
         updateAuthToken(resp.data.jwtToken);
         if (resp.data.jwtToken) {

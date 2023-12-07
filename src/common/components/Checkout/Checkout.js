@@ -7,7 +7,7 @@ import axios from "axios";
 import CheckoutItemCard from "./CheckoutItemCard";
 import { authTokenSignal } from "../../signals/AuthTokenSignal";
 
-const productsURL = "http://localhost:3001/products";
+const productsURL = "http://big.kapsi.fi/products";
 
 export default function Checkout() {
 
@@ -72,7 +72,7 @@ export default function Checkout() {
             const body = { customerId: customerId, products: cartContentSignal.value };
     
             // Lähetä tilaus backendille sisällyttäen token Authorization-headeriin
-            const response = await axios.post("http://localhost:3001/order", body, {
+            const response = await axios.post("http://big.kapsi.fi/order", body, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

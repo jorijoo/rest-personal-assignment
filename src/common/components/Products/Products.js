@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Products.css";
 import DisplayByCategory from "./DisplayByCategory";
 
-const categoryURL = "http://localhost:3001/categories";
+const categoryURL = "http://big.kapsi.fi/categories";
 
 export default function Products() {
   const [category, setCategory] = useState([]);

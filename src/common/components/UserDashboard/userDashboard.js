@@ -15,7 +15,7 @@ const UserDashboard = () => {
       const token = authTokenSignal.value;
       if (token) {
         try {
-          const response = await axios.get("http://localhost:3001/myorders", {
+          const response = await axios.get("http://big.kapsi.fi/myorders", {
             headers: {
               Authorization: `Bearer ${token}`
             }

@@ -14,7 +14,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/products/${id}`);
+        const response = await axios.get(`http://big.kapsi.fi/products/${id}`);
         setProduct(response.data);
 
       } catch (error) {
