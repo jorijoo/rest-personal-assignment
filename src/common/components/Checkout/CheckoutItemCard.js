@@ -7,7 +7,7 @@ export default function CheckoutItemCard(params) {
         <Card className="mb-3 shadow rounded position-relative">
             <Row>
                 <Col md={6}>
-                    <h5>{product.productName}</h5>
+                    <h4>{product.productName}</h4>
                 </Col>
                 <Col md={8}>
                     <div>{`${product.quantity} KPL (€${product.price}/kpl) Yhteensä: €${(product.price * product.quantity).toFixed(2)} `}</div>

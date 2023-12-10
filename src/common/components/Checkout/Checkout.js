@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CheckoutItemCard from "./CheckoutItemCard";
 
+
 const productsURL = "https://big.kapsi.fi/products";
 
 export default function Checkout() {
@@ -113,6 +114,7 @@ export default function Checkout() {
                     ))}
                 </Col>
                 <Col md={4}>
+                <img width="400" class="rounded mx-auto d-block mx-auto d-none d-md-block" src='https://big.kapsi.fi/files/others/daavidin_divari.jpg'  />
                     <Card className="shadow mb-5">
                         <Card.Body>
                             <Card.Title>Tilaus:</Card.Title>
