@@ -1,11 +1,13 @@
 import { useEffect } from "react"
+import { jwtDecode } from "jwt-decode";
 import { cartContentSignal } from "../../signals/CartSignals";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CheckoutItemCard from "./CheckoutItemCard";
+import { authTokenSignal } from "../../signals/AuthTokenSignal";
 
-const productsURL = "https://big.kapsi.fi/products";
+const productsURL = "http://big.kapsi.fi/products";
 
 export default function Checkout() {
 
@@ -47,26 +49,58 @@ export default function Checkout() {
 
     }, []);
 
-    /**
-     * Send POST request to place order, uncomment when backend api supports order
-     * NEEDS customerId handling also, current id is only manually created for testing purposes only.
-     ----------------
+    
+    //  * Send POST request to place order, uncomment when backend api supports order
+    //  * NEEDS customerId handling also, current id is only manually created for testing purposes only.
+    
+
+    // ...
+    
     const postOrder = async () => {
-        const body = { customerId: 123, products: cartContentSignal.value }
-
-        try {
-            const response = await axios.post("http://localhost:3001/order", body);
-
-            // If success, clear cart content.
-            cartContentSignal.value = []
-            localStorage.setItem("cart", JSON.stringify([]));
-        } catch (error) {
-            console.log(error.message);
+        // Käytä tokenia globaalista signaalista
+        const token = authTokenSignal.value;
+        if (!token) {
+          console.log("Ei tokenia");
+          return;
         }
-
+    
+        try {
+            // Dekoodaa token
+            const decoded = jwtDecode(token);
+            const customerId = decoded.userId;
+    
+            const body = { customerId: customerId, products: cartContentSignal.value };
+    
+            // Lähetä tilaus backendille sisällyttäen token Authorization-headeriin
+            const response = await axios.post("http://big.kapsi.fi/order", body, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+    
+            // Jos tilaus onnistuu, tyhjennä ostoskori jne.
+            cartContentSignal.value = [];
+            localStorage.setItem("cart", JSON.stringify([]));
+            alert("Tilaus lähti!");
+            navigate("/");
+        } catch (error) {
+            if (error.response) {
+                // Virhe HTTP-pyynnössä
+                console.error("Virhe lähettäessä tilausta:", error.response);
+            } else if (error instanceof jwtDecode.InvalidTokenError) {
+                // Virhe tokenin dekoodauksessa
+                console.error("Virheellinen token:", error.message);
+            } else {
+                // Muu yleinen virhe
+                console.error("Yleinen virhe:", error.message);
+            }
+        }
     };
-    ----------------------
-    */
+    
+    
+    
+  
+    
     const backImageUrl = "/Group7.png";
 
     // Calculate the total price of the products
@@ -83,10 +117,10 @@ export default function Checkout() {
     const submitOrder = (e) => {
         e.preventDefault();
 
-        /**
-         * Uncomment below when backend supports order API, user id handling is also needed
-         * postOrder();
-         */
+        
+        //  * Uncomment below when backend supports order API, user id handling is also needed
+         postOrder();
+         
 
         cartContentSignal.value = []
         localStorage.setItem("cart", JSON.stringify([]));
