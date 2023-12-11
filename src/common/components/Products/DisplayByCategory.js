@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "./ProductCard";
 // server link for products
-const productsURL = "https://big.kapsi.fi/products";
+const productsURL = "http://big.kapsi.fi/products";
 
 const DisplayByCategory = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
