@@ -9,6 +9,8 @@ export const ProductList = () => {
       price: "779.99€",
       image: "https://big.kapsi.fi/products/camera_retro.jpg",
       description: "Canon Retro 1970",
+      id: 1,
+      
     },
     {
       price: "2989.99€",
@@ -44,6 +46,9 @@ export const ProductList = () => {
               price={product.price}
               image={product.image}
               description={product.description}
+              id={product.id}
+              
+
             />
           </div>
         ))}
