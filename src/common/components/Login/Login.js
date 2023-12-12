@@ -4,16 +4,39 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { updateAuthToken } from "../../signals/AuthTokenSignal";
 
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+
+  function HandeAdminLogin() {
+    axios
+      .post("http://localhost:3001/adminLogin", { username, pw: password })
+      .then((resp) => {
+        const token = resp.data.jwtToken;
+
+        if (token) {
+          sessionStorage.setItem("adminToken", token);
+          navigate("/admin")
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (username === "admin") {
+      HandeAdminLogin();
+      return;
+    }
+
     axios
-      .post("http://big.kapsi.fi/login", { username, pw: password })
+      .post("http://localhost:3001/login", { username, pw: password })
       .then((resp) => {
         updateAuthToken(resp.data.jwtToken);
         if (resp.data.jwtToken) {

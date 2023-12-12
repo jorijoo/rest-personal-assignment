@@ -10,6 +10,7 @@ import Login from "../components/Login/Login";
 import Signup from "../components/Login/Signup";
 import Checkout from "../components/Checkout/Checkout";
 import UserDashboard from "../components/UserDashboard/userDashboard";
+import Admin from "../components/Admin/Admin";
 
 const RoutesComponent = () => {
   return (
@@ -24,7 +25,7 @@ const RoutesComponent = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/user" element={<UserDashboard />} />
-
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   );
 };
