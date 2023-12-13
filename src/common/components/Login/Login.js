@@ -7,6 +7,8 @@ import { updateAuthToken } from "../../signals/AuthTokenSignal";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -24,6 +26,8 @@ const Login = () => {
       })
       .catch((error) => {
         console.error(error.message);
+        setErrorMessage("Wrong username or password");
+
       });
   };
 
@@ -32,6 +36,9 @@ const Login = () => {
       <div className="form_container p-5 rounded">
         <form onSubmit={handleSubmit}>
           <h3 className="text-center">Sign In</h3>
+          {errorMessage && (
+            <div className="alert alert-danger">{errorMessage}</div>
+          )}
           <div className="mb-2">
             <label htmlFor="username">Username</label>
             <input
