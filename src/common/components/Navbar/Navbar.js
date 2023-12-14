@@ -63,11 +63,6 @@ const Navbar = () => {
                 Products
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/link3" className="nav-link" onClick={closeNavbar}>
-                Link3
-              </NavLink>
-            </li>
           </ul>
           <ul className="navbar-nav navbar-right">
             <li className="nav-item">

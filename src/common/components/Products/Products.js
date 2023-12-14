@@ -22,7 +22,7 @@ export default function Products() {
     getCategory();
   }, []);
 
-  function divideByCategory(category) {
+    function divideByCategory(category) {
     setSelectedCategory(category);
   }
 
@@ -35,6 +35,10 @@ export default function Products() {
           <React.Fragment key={category.categoryName}>
             <button onClick={() => divideByCategory(category)}>
               {category.categoryName}
+              <img
+                src={category.categoryName+".png"}
+                alt={category.productName}
+              />
             </button>
           </React.Fragment>
         ))}

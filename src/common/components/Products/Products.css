@@ -31,4 +31,10 @@
 
 #button-container button {
   margin: 5px; /* Optional: adds margin around each button for spacing */
+  min-width: 125px;/*Siitä minimi rigid width jotta All ei olisi niin surullisen pieni*/
+}
+
+img{
+  width: 50px;
+  height: auto;
 }
