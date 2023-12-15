@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { updateAuthToken } from "../../signals/AuthTokenSignal";
+import { clearAdminData, updateAdminToken } from "../../signals/AdminSignal";
 
 
 const Login = () => {
@@ -10,39 +11,52 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-
-  function HandeAdminLogin() {
+  /**
+   * Handle user navigation after successful login.
+   */
+  function HandleUserNavigation(token) {
     axios
-      .post("http://localhost:3001/adminLogin", { username, pw: password })
-      .then((resp) => {
-        const token = resp.data.jwtToken;
+      .get("http://localhost:3001/personal", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((resp) => {
 
-        if (token) {
-          sessionStorage.setItem("adminToken", token);
+        // Check for admin permissions
+        if (resp.data.user_permissions === 5) {
+          // reset admin data
+          clearAdminData();
+
+          const adminData = {
+            userName: resp.data.username,
+            adminLoggedIn: true
+          }
+
+          updateAdminToken(adminData)
           navigate("/admin")
+        }
+        // Customer handling
+        else {
+          updateAuthToken(token);
+          sessionStorage.setItem("token", token);
+          navigate("/user");
         }
       })
       .catch((error) => {
-        console.error(error.message);
+        console.log("error");
+        console.log(error);
       });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (username === "admin") {
-      HandeAdminLogin();
-      return;
-    }
-
     axios
       .post("http://localhost:3001/login", { username, pw: password })
       .then((resp) => {
-        updateAuthToken(resp.data.jwtToken);
-        if (resp.data.jwtToken) {
-          sessionStorage.setItem("token", resp.data.jwtToken);
-          // Kirjautuminen onnistui, ohjaa käyttäjä sivulle user dashboard
-          navigate("/user");
+        const token = resp.data.jwtToken;
+
+        if (token) {
+          HandleUserNavigation(token)
         }
       })
       .catch((error) => {

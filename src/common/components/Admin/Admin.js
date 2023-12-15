@@ -4,14 +4,18 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
-import { jwtDecode } from "jwt-decode";
+import { clearAdminData } from "../../signals/AdminSignal";
 
 export default function Admin() {
+    const [adminUserName, setAdminUserName] = useState("")
     const [categoryName, setCategoryName] = useState("")
     const [categoryDescription, setCategoryDescription] = useState("")
 
     const navigate = useNavigate();
 
+    /**
+     * Submits new category
+     */
     const submitCategory = async (event) => {
         event.preventDefault()
 
@@ -35,9 +39,12 @@ export default function Admin() {
         setCategoryDescription("");
     };
 
+    /**
+     * Log admin out and clear signal.
+     */
     const adminLogout = () => {
         try {
-            sessionStorage.removeItem("adminToken");
+            clearAdminData();
             navigate("/");
             console.log('Admin logged out.');
         } catch (error) {
@@ -48,15 +55,20 @@ export default function Admin() {
 
     useEffect(() => {
         try {
-            const decoded = jwtDecode(sessionStorage.getItem("adminToken"));
-            if (decoded.admin === "admin_logged") {
-                console.log("Admin user");
+            
+            const adminData = JSON.parse(sessionStorage.adminData);
+            
+            if(adminData && adminData.adminLoggedIn){
+                console.log("Admin has logged in!");
+                setAdminUserName(adminData.userName);
             }
-            else {
-                throw ("error");
+            else{
+                const msg = "Access fordbidden";
+                console.log(msg);
+                throw new Error(msg)
             }
         } catch (error) {
-            console.log("Admin not available.");
+            console.log(error);
             navigate("/");
         }
     }, []);
@@ -65,7 +77,7 @@ export default function Admin() {
     return (
         <div>
             <div id="adminHeader">
-                <h1>Admin</h1>
+                <h1>Welcome {adminUserName}</h1>
                 <Button variant="warning" onClick={adminLogout} >Logout</Button>
                 <hr></hr>
             </div>
