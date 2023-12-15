@@ -29,16 +29,20 @@ export default function Products() {
   return (
     <div id="container">
       <div id="button-container">
-        <button onClick={() => setSelectedCategory(null)}>All</button>
+        <button  
+            className="border border-dark border-1 rounded local-button-all" 
+            onClick={() => setSelectedCategory(null)}>
+                <div className='local-button-all'>All</div>
+        </button>
         {category.map((category) => (
           //Tähän key atribuutti, oli ennen buttonissa
           <React.Fragment key={category.categoryName}>
-            <button onClick={() => divideByCategory(category)}>
-              {category.categoryName}
-              <img
+            <button  className="border border-dark border-1 rounded" onClick={() => divideByCategory(category)}>
+              <img className = 'productCard-image card-img-top'
                 src={category.categoryName+".png"}
                 alt={category.productName}
               />
+              <div>{category.categoryName}</div>
             </button>
           </React.Fragment>
         ))}

@@ -23,18 +23,29 @@
 } */
 
 #button-container {
-  display: flex;
-  justify-content: center; /* Centers items on the main axis (horizontally) */
-  flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
-  gap: 10px; /* Optional: adds some space between the buttons */
+	display: flex;
+	justify-content: center;
+	/* Centers items on the main axis (horizontally) */
+	flex-wrap: wrap;
+	/* Allows items to wrap onto multiple lines */
+	gap: 10px;
+	/* Optional: adds some space between the buttons */
 }
 
 #button-container button {
-  margin: 5px; /* Optional: adds margin around each button for spacing */
-  min-width: 125px;/*Siitä minimi rigid width jotta All ei olisi niin surullisen pieni*/
+	margin: 5px;
+	font-weight: 900;
+	text-transform: uppercase;
+	width: 10em;
+	/* Optional: adds margin around each button for spacing */
 }
 
-img{
-  width: 50px;
-  height: auto;
+.local-button-all {
+	background-color: #000;
+	color: #efe8e0;
+	font-family: "Bebas Neue", sans-serif;
+}
+
+.local-button-all div {
+	font-size: 5em;
 }
