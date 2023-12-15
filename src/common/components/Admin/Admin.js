@@ -25,7 +25,7 @@ export default function Admin() {
         }
 
         try {
-            const body = { categoryName: categoryName, description: categoryDescription };
+            const body = [{ categoryName: categoryName, description: categoryDescription }];
             await axios.post("http://big.kapsi.fi/categories", body);
             alert("Kategoria " + categoryName + " lisätty.");
         } catch (error) {
