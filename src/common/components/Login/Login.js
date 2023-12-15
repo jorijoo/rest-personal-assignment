@@ -16,7 +16,7 @@ const Login = () => {
    */
   function HandleUserNavigation(token) {
     axios
-      .get("http://localhost:3001/personal", {
+      .get("http://big.kapsi.fi/personal", {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -51,7 +51,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/login", { username, pw: password })
+      .post("http://big.kapsi.fi/login", { username, pw: password })
       .then((resp) => {
         const token = resp.data.jwtToken;
 

@@ -26,12 +26,9 @@ export default function Admin() {
 
         try {
             const body = { categoryName: categoryName, description: categoryDescription };
-            await axios.post("http://localhost:3001/addCategory", body);
+            await axios.post("http://big.kapsi.fi/categories", body);
             alert("Kategoria " + categoryName + " lisätty.");
         } catch (error) {
-            if (error.response.data.error.includes("Duplicate entry")) {
-                alert("Kategoria on jo olemassa: " + categoryName);
-            }
             console.error(error);
         }
 
@@ -55,9 +52,8 @@ export default function Admin() {
 
     useEffect(() => {
         try {
-            
             const adminData = JSON.parse(sessionStorage.adminData);
-            
+
             if(adminData && adminData.adminLoggedIn){
                 console.log("Admin has logged in!");
                 setAdminUserName(adminData.userName);
