@@ -46,20 +46,20 @@ const UserDashboard = () => {
 
   return (
     <Container>
-      <h1 className="my-4">User Dashboard</h1>
+      <h1 className="my-4">Käyttäjätilini</h1>
       {isLoggedIn ? (
         <Container>
-          <h2 className="my-3">My Orders</h2>
+          <h2 className="my-3">Minun tilaukseni</h2>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Order ID</th>
-                <th>Order Date</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Image</th>
-                <th>Category</th>
+                <th>Tilaus ID</th>
+                <th>Tilaus päivä</th>
+                <th>Tuotteen nimi</th>
+                <th>Hinta</th>
+                <th>Kappalemäärä</th>
+                <th>Kuva</th>
+                <th>Kategoria</th>
               </tr>
             </thead>
             <tbody>
@@ -76,12 +76,12 @@ const UserDashboard = () => {
               ))}
             </tbody>
           </Table>
-          <button onClick={handleLogout} className="btn btn-primary my-3">Log out</button>
+          <button onClick={handleLogout} className="btn btn-primary my-3">Kirjaudu ulos</button>
         </Container>
       ) : (
         <div>
-          <p>You are not logged in.</p>
-          <Link to="/login">Log in</Link>
+          <p>Et ole kirjautunt sisään.</p>
+          <Link to="/login">Kirjautunut</Link>
         </div>
       )}
     </Container>
