@@ -1,0 +1,25 @@
+#categoryNameContainer {
+    padding-left: 15px;
+    max-width: 350px;
+}
+
+#categoryNameText {
+    text-align: left;
+}
+
+#categoryDescriptionContainer {
+    padding-left: 15px;
+    max-width: 500px;
+}
+
+#categoryDescriptionContainer>textarea {
+    text-align: left;
+}
+
+#adminHeader {
+    padding: 15px;
+}
+
+#submitButton {
+    margin-top: 15px;
+}
