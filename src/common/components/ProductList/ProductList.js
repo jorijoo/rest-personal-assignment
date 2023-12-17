@@ -6,21 +6,17 @@ import ProductCard from "../Products/ProductCard";
 
 export const ProductList = () => {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([''])
 
     useEffect(() => {
         axios.get(`${ENV.BACKEND}/products`)
             .then(
                 (res) => {
-                    const randomized = res.data.sort(() => 0.5 - Math.random())
-                    const selected = randomized.slice(0, 4)
-                    setProducts(selected)
+                    setProducts(res.data.sort(() => 0.5 - Math.random()).slice(0, 4))
                 })
-            .catch((err) => console.error("Virhe tuotteen haussa:", err))}, []);
+            .catch((err) => console.error("Virhe tuotteen haussa:", err))
+    }, [])
 
-if (!products) {
-    return <div>Ladataan...</div>;
-} else {
     return (
         <div className="container product-list-container mb-5">
             <div className="row">
@@ -30,5 +26,4 @@ if (!products) {
             </div>
         </div>
     )
-}
 };
