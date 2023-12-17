@@ -16,6 +16,12 @@ export default function Checkout() {
 
     useEffect(() => {
 
+        if (!authTokenSignal.value) {
+            alert("Kirjaudu sisään jatkaaksesi tilausta");
+            navigate("/login");
+            return;
+        }
+
 
         const fetchData = async () => {
             try {
@@ -42,7 +48,7 @@ export default function Checkout() {
 
         fetchData()
 
-    }, []);
+    }, [navigate]);
 
     
     const postOrder = async () => {
