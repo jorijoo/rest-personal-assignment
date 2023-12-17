@@ -3,6 +3,8 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { updateAuthToken } from "../../signals/AuthTokenSignal";
+import { clearAdminData, updateAdminToken } from "../../signals/AdminSignal";
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,17 +13,52 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  /**
+   * Handle user navigation after successful login.
+   */
+  function HandleUserNavigation(token) {
+    axios
+      .get("http://big.kapsi.fi/personal", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((resp) => {
+
+        // Check for admin permissions
+        if (resp.data.user_permissions === 5) {
+          // reset admin data
+          clearAdminData();
+
+          const adminData = {
+            userName: resp.data.username,
+            adminLoggedIn: true
+          }
+
+          updateAdminToken(adminData)
+          navigate("/admin")
+        }
+        // Customer handling
+        else {
+          updateAuthToken(token);
+          sessionStorage.setItem("token", token);
+          navigate("/user");
+        }
+      })
+      .catch((error) => {
+        console.log("error");
+        console.log(error);
+      });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
       .post("http://big.kapsi.fi/login", { username, pw: password })
       .then((resp) => {
-        updateAuthToken(resp.data.jwtToken);
-        if (resp.data.jwtToken) {
-          sessionStorage.setItem("token", resp.data.jwtToken);
-          // Kirjautuminen onnistui, ohjaa käyttäjä sivulle user dashboard
-          navigate("/user");
+        const token = resp.data.jwtToken;
+
+        if (token) {
+          HandleUserNavigation(token)
         }
       })
       .catch((error) => {
