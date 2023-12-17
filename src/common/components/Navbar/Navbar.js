@@ -55,12 +55,12 @@ const Navbar = () => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink to="/" className="nav-link" onClick={closeNavbar}>
-                Home
+                Koti
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink to="/products" className="nav-link" onClick={closeNavbar}>
-                Products
+                Tuotteet
               </NavLink>
             </li>
           </ul>

@@ -6,28 +6,28 @@ const Signup = () => {
     <div className='login template d-flex justify-content-center align-items-center vh-100'>
     <div className='form_container p-5 rounded'>
     <form>
-        <h3 className='text-center'>Sign Up</h3>
+        <h3 className='text-center'>Rekisteröidy</h3>
         <div className='mb-2'>
-            <label htmlFor="fname">First Name</label>
-            <input type="text" placeholder='Enter First Name' className='form-control'/> 
+            <label htmlFor="fname">Etunimi</label>
+            <input type="text" placeholder='Etunimi' className='form-control'/> 
         </div><div className='mb-2'>
-            <label htmlFor="lname">Last Name</label>
-            <input type="text" placeholder='Enter Last Name' className='form-control'/> 
+            <label htmlFor="lname">Sukunimi</label>
+            <input type="text" placeholder='Sukunimi' className='form-control'/> 
         </div>
         <div className='mb-2'>
-            <label htmlFor="email">Email</label>
-            <input type="email" placeholder='Enter Email' className='form-control'/> 
+            <label htmlFor="email">Sähköposti</label>
+            <input type="email" placeholder='Email' className='form-control'/> 
         </div>
         <div className='mb-2'>
-            <label htmlFor="password">Password</label>
-            <input type="password" placeholder='Enter Password' className='form-control'/> 
+            <label htmlFor="password">Salasana</label>
+            <input type="password" placeholder='Salasana' className='form-control'/> 
         </div>
        
         <div className='d-grid mt-2'>
-            <button className='btn btn-primary'>Sign Up</button>
+            <button className='btn btn-primary'>Rekisteröidy</button>
         </div>
         <p className='text-end mt-2'>
-          Already Registered  <Link to="/login" className='ms-2'>Sign in</Link>
+          Kirjautunut jo  <Link to="/login" className='ms-2'>Kirjaudu sisään</Link>
         </p>            
     </form>
     </div>
