@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "./ProductCard";
+import { ENV } from "../../constants/public_env";
+
 // server link for products
-const productsURL = "http://big.kapsi.fi/products";
+const productsURL = `${ENV.BACKEND}/products`;
 
 const DisplayByCategory = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
