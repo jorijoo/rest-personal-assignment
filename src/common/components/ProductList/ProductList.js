@@ -3,6 +3,7 @@ import "./ProductList.css";
 import ProductItem from "../ProductItems/ProductItem";
 import { ENV } from "../../constants/public_env";
 import axios from "axios";
+import ProductCard from "../Products/ProductCard";
 
 export const ProductList = () => {
 
@@ -13,7 +14,7 @@ export const ProductList = () => {
             try {
                 const res = await axios.get(`${ENV.BACKEND}/products`)
                 const randomized = res.data.sort(() => 0.5 - Math.random())
-                const selected = randomized.slice(0,5)
+                const selected = randomized.slice(0, 4)
                 setProducts(selected)
 
             } catch (error) {
@@ -32,17 +33,10 @@ export const ProductList = () => {
     return (
         <div className="container product-list-container mb-5">
             <div className="row">
-                {products.map((product, index) => (
-                    <div key={index} className="col-md">
-                        <ProductItem
-                            price={product.price}
-                            image={product.imageUrl}
-                            description={product.description}
-                            id={product.id}
-                        />
-                    </div>
-                ))}
+                    {products.map((product) => (
+                        <ProductCard product={product} />
+                    ))}
+                </div>
             </div>
-        </div>
     );
 };
