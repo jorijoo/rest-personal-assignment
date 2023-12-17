@@ -72,41 +72,41 @@ const Login = () => {
     <div className="login_template d-flex justify-content-center align-items-center vh-100">
       <div className="form_container p-5 rounded">
         <form onSubmit={handleSubmit}>
-          <h3 className="text-center">Sign In</h3>
+          <h3 className="text-center">Kirjaudu sisään</h3>
           {errorMessage && (
             <div className="alert alert-danger">{errorMessage}</div>
           )}
           <div className="mb-2">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">käyttäjätunnus</label>
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
-              placeholder="Enter Username"
+              placeholder="Aseta käyttäjätunnus"
               className="form-control"
               required
             />
           </div>
           <div className="mb-2">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Salasana</label>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder="Enter Password"
+              placeholder="Anna salasana"
               className="form-control"
               required
             />
           </div>
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
-              Sign in
+              Kirjaudu sisään
             </button>
           </div>
           <p className="text-end mt-2">
-            Forgot <a href="#">Password?</a>
+            Unohtuiko <a href="#">Salasana?</a>
             <Link to="/signup" className="ms-2">
-              Sign up
+              Rekisteröidy
             </Link>
           </p>
         </form>

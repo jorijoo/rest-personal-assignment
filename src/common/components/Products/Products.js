@@ -32,7 +32,7 @@ export default function Products() {
         <button  
             className="border border-dark border-1 rounded local-button-all" 
             onClick={() => setSelectedCategory(null)}>
-                <div className='local-button-all'>All</div>
+                <div className='local-button-all'>Kaikki</div>
         </button>
         {category.map((category) => (
           //Tähän key atribuutti, oli ennen buttonissa
