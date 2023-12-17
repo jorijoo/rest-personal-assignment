@@ -6,7 +6,7 @@ import ProductCard from "../Products/ProductCard";
 
 export const ProductList = () => {
 
-    const [products, setProducts] = useState([''])
+    const [products, setProducts] = useState([{id: 0}])
 
     useEffect(() => {
         axios.get(`${ENV.BACKEND}/products`)
@@ -21,7 +21,7 @@ export const ProductList = () => {
         <div className="container product-list-container mb-5">
             <div className="row">
                 {products.map((product) => (
-                    <ProductCard product={product} />
+                    <ProductCard key={product.id} product={product} />
                 ))}
             </div>
         </div>
