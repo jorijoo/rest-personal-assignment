@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { updateAuthToken } from "../../signals/AuthTokenSignal";
+import { LOCALIZATION } from "../../constants/fi";
 import { clearAdminData, updateAdminToken } from "../../signals/AdminSignal";
 
 
@@ -63,7 +64,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.error(error.message);
-        setErrorMessage("Wrong username or password");
+        setErrorMessage(LOCALIZATION.ERROR_LOGIN)
 
       });
   };
@@ -72,41 +73,41 @@ const Login = () => {
     <div className="login_template d-flex justify-content-center align-items-center vh-100">
       <div className="form_container p-5 rounded">
         <form onSubmit={handleSubmit}>
-          <h3 className="text-center">Kirjaudu sisään</h3>
+          <h3 className="text-center">{LOCALIZATION.LOGIN}</h3>
           {errorMessage && (
             <div className="alert alert-danger">{errorMessage}</div>
           )}
           <div className="mb-2">
-            <label htmlFor="username">käyttäjätunnus</label>
+            <label htmlFor="username">{LOCALIZATION.USERNAME}</label>
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
-              placeholder="Aseta käyttäjätunnus"
+              placeholder={`${LOCALIZATION.PLACE} ${LOCALIZATION.USERNAME.toLowerCase()}`}
               className="form-control"
               required
             />
           </div>
           <div className="mb-2">
-            <label htmlFor="password">Salasana</label>
+            <label htmlFor="password">{LOCALIZATION.PASSWORD}</label>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder="Anna salasana"
+              placeholder={`${LOCALIZATION.PLACE} ${LOCALIZATION.PASSWORD.toLowerCase()}`}
               className="form-control"
               required
             />
           </div>
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
-              Kirjaudu sisään
+              {LOCALIZATION.LOGIN}
             </button>
           </div>
           <p className="text-end mt-2">
-            Unohtuiko <a href="#">Salasana?</a>
+            {LOCALIZATION.FORGOT} <a href="#">{LOCALIZATION.PASSWORD}?</a>
             <Link to="/signup" className="ms-2">
-              Rekisteröidy
+              {LOCALIZATION.REGISTER}
             </Link>
           </p>
         </form>
