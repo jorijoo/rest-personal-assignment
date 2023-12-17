@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Products.css";
 import DisplayByCategory from "./DisplayByCategory";
+import { ENV } from "../../constants/public_env";
 
-const categoryURL = "http://big.kapsi.fi/categories";
+const categoryURL = `${ENV.BACKEND}/categories`;
 
 export default function Products() {
   const [category, setCategory] = useState([]);
