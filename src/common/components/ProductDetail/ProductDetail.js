@@ -77,7 +77,13 @@ const ProductDetail = () => {
             <p className="lead">{product.productDescription}</p>
             <p className="lead">Varastossa: <b style={styleForStockNumber}>{product.unitsStored} </b> kpl</p>
             <p className="price h3">€{product.price}</p>
-            <button className="btn btn-primary btn-lg" onClick={() => addToCart()}>Lisää ostoskoriin</button>
+            <button className="btn btn-primary btn-lg"
+            onClick={() => addToCart()}
+            disabled={product.unitsStored === 0}
+            >
+            Lisää ostoskoriin
+            </button>
+            {product.unitsStored === 0 && <p className="text-danger">Tuote on loppu varastosta</p>}
           </div>
         </div>
       </div>
