@@ -1,10 +1,14 @@
 export const LOCALIZATION = {
     LOGIN: `Kirjaudu sisään`,
     USERNAME: `Käyttäjätunnus`,
-    USERNAME_PLACEHOLDER: `Aseta käyttäjätunnus`,
+    PLACE: `Aseta`,
     PASSWORD: `Salasana`,
-    PASSWORD_PLACEHOLDER: `Anna salasana`,
+    FNAME: `Etunimi`,
+    LNAME: `Sukunimi`,
     FORGOT: `Unohtuiko`,
     REGISTER: `Rekisteröidy`,
-    ERROR_LOGIN: `Väärä käyttäjätunnus tai salasana`
+    REGISTERED_ALREADY: `Oletko jo rekisteröitynyt?`,
+    ERROR_LOGIN: `Väärä käyttäjätunnus tai salasana`,
+    ERROR_USER_ADD: `Käyttäjätunnuksen luonti estetty, yritä toisia tunnuksia`,
+    SUCCESS_USER_ADD: `Käyttäjä lisätty`
 }

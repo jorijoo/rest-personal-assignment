@@ -83,7 +83,7 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
-              placeholder={LOCALIZATION.USERNAME_PLACEHOLDER}
+              placeholder={`${LOCALIZATION.PLACE} ${LOCALIZATION.USERNAME.toLowerCase()}`}
               className="form-control"
               required
             />
@@ -94,7 +94,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              placeholder={LOCALIZATION.PASSWORD_PLACEHOLDER}
+              placeholder={`${LOCALIZATION.PLACE} ${LOCALIZATION.PASSWORD.toLowerCase()}`}
               className="form-control"
               required
             />
