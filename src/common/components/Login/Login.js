@@ -26,7 +26,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.error(error.message);
-        setErrorMessage("Wrong username or password");
+        setErrorMessage("Väärä käyttäjätunnus tai salasana");
 
       });
   };
