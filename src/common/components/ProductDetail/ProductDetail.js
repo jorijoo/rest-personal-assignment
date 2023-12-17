@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
 import { cartContentSignal } from "../../signals/CartSignals";
+import { ENV } from '../../constants/public_env'
 
 const ProductDetail = () => {
   //Haetaan tuotteen id URL:sta käyttämällä params
@@ -14,7 +15,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://big.kapsi.fi/products/${id}`);
+        const response = await axios.get(`${ENV.BACKEND}/products/${id}`);
         setProduct(response.data);
 
       } catch (error) {

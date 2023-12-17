@@ -4,6 +4,7 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import { authTokenSignal } from "../../signals/AuthTokenSignal";
+import { ENV } from "../../constants/public_env";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const UserDashboard = () => {
       const token = authTokenSignal.value;
       if (token) {
         try {
-          const response = await axios.get("http://big.kapsi.fi/myorders", {
+          const response = await axios.get(`${ENV.BACKEND}/myorders`, {
             headers: {
               Authorization: `Bearer ${token}`
             }

@@ -5,6 +5,7 @@ import axios from "axios";
 import { updateAuthToken } from "../../signals/AuthTokenSignal";
 import { LOCALIZATION } from "../../constants/fi";
 import { clearAdminData, updateAdminToken } from "../../signals/AdminSignal";
+import { ENV } from '../../constants/public_env'
 
 
 const Login = () => {
@@ -19,7 +20,7 @@ const Login = () => {
    */
   function HandleUserNavigation(token) {
     axios
-      .get("http://big.kapsi.fi/personal", {
+      .get(`${ENV.BACKEND}/personal`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -54,7 +55,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://big.kapsi.fi/login", { username, pw: password })
+      .post(`${ENV.BACKEND}/login`, { username, pw: password })
       .then((resp) => {
         const token = resp.data.jwtToken;
 
