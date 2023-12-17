@@ -16,13 +16,7 @@ export default function Checkout() {
 
     useEffect(() => {
 
-        /* 
-        -------------------------
-        Check the stock amount:
-            1) All good, continue
-            2) Mismatch: -update cart content to match stock content. 
-        -------------------------
-        */
+
         const fetchData = async () => {
             try {
 
@@ -50,12 +44,6 @@ export default function Checkout() {
 
     }, []);
 
-    
-    //  * Send POST request to place order, uncomment when backend api supports order
-    //  * NEEDS customerId handling also, current id is only manually created for testing purposes only.
-    
-
-    // ...
     
     const postOrder = async () => {
         // Käytä tokenia globaalista signaalista
@@ -104,12 +92,12 @@ export default function Checkout() {
     
     const backImageUrl = "/Group7.png";
 
-    // Calculate the total price of the products
+    // Lasketaan tilauksen kokonaissumma
     const subtotal = cartContentSignal.value.reduce((total, product) => {
         return total + parseFloat(product.price) * product.quantity;
     }, 0);
 
-    // Fixed delivery fee for demonstration purposes
+    // toimituskulu määritelty vakiona
     const deliveryFee = 5.0;
 
     // Calculate the total amount
@@ -119,7 +107,6 @@ export default function Checkout() {
         e.preventDefault();
 
         
-        //  * Uncomment below when backend supports order API, user id handling is also needed
          postOrder();
          
 
@@ -148,7 +135,7 @@ export default function Checkout() {
                     ))}
                 </Col>
                 <Col md={4}>
-                <img width="400" class="rounded mx-auto d-block mx-auto d-none d-md-block" src='https://big.kapsi.fi/files/others/daavidin_divari.jpg'  />
+                <img width="400" className="rounded mx-auto d-block mx-auto d-none d-md-block" src='https://big.kapsi.fi/files/others/daavidin_divari.jpg' alt="Kuva kaupan julkisivusta" />
                     <Card className="shadow mb-5">
                         <Card.Body>
                             <Card.Title>Tilaus:</Card.Title>
