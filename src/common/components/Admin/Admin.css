@@ -1,9 +1,11 @@
-#categoryNameContainer {
+#categoryNameContainer,
+#categoryImageContainer {
     padding-left: 15px;
     max-width: 350px;
 }
 
-#categoryNameText {
+#categoryNameText,
+#categoryImageText {
     text-align: left;
 }
 
@@ -12,7 +14,7 @@
     max-width: 500px;
 }
 
-#categoryDescriptionContainer>textarea {
+#categoryDescriptionContainer textarea {
     text-align: left;
 }
 

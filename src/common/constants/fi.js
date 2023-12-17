@@ -10,5 +10,14 @@ export const LOCALIZATION = {
     REGISTERED_ALREADY: `Oletko jo rekisteröitynyt?`,
     ERROR_LOGIN: `Väärä käyttäjätunnus tai salasana`,
     ERROR_USER_ADD: `Käyttäjätunnuksen luonti estetty, yritä toisia tunnuksia`,
-    SUCCESS_USER_ADD: `Käyttäjä lisätty`
+    SUCCESS_USER_ADD: `Käyttäjä lisätty`,
+    WELCOME: `Tervetuloa`,
+    LOGOUT: `Kirjaudu ulos`,
+    CATEGORY: `Kategoria`,
+    ADD: `Lisää`,
+    DESCRIPTION: `Kuvaus`,
+    SUBMIT: `Lähetä`,
+    PRODUCT: `Tuote`,
+    IMAGE: `Kuva`,
+    NAME: `Nimi`
 }
