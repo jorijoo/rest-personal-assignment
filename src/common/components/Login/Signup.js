@@ -16,7 +16,6 @@ const Signup = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-
         axios
             .post(`${ENV.BACKEND}/personal`, { fname, lname, username, pw: password })
             .then((res) => {

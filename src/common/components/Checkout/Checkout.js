@@ -6,9 +6,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CheckoutItemCard from "./CheckoutItemCard";
 import { authTokenSignal } from "../../signals/AuthTokenSignal";
+import { ENV } from '../../constants/public_env'
 
 
-const productsURL = "https://big.kapsi.fi/products";
+const productsURL = ENV.BACKEND;
 
 export default function Checkout() {
 
@@ -67,7 +68,7 @@ export default function Checkout() {
             const body = { customerId: customerId, products: cartContentSignal.value };
     
             // Lähetä tilaus backendille sisällyttäen token Authorization-headeriin
-            const response = await axios.post("http://big.kapsi.fi/order", body, {
+            const response = await axios.post(`${ENV.BACKEND}/order`, body, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

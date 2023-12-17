@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
 import { clearAdminData } from "../../signals/AdminSignal";
+import '../../constants/public_env'
+import { ENV } from "../../constants/public_env";
 
 export default function Admin() {
     const [adminUserName, setAdminUserName] = useState("")
@@ -26,7 +28,7 @@ export default function Admin() {
 
         try {
             const body = [{ categoryName: categoryName, description: categoryDescription }];
-            await axios.post("http://big.kapsi.fi/categories", body);
+            await axios.post(ENV.BACKEND, body);
             alert("Kategoria " + categoryName + " lisätty.");
         } catch (error) {
             console.error(error);
