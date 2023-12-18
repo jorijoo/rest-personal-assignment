@@ -2,7 +2,7 @@
 
 Web design project group assignment
 
-# Project documentation
+## Project documentation
 
 Please check our wiki [https://github.com/jorijoo/product-store-assignment/wiki/](https://github.com/jorijoo/product-store-assignment/wiki/Group-1-%E2%80%90-Product-Store-Assignment)
 
