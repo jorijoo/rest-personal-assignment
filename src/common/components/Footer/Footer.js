@@ -6,6 +6,7 @@ import {
   faFacebook,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const year = new Date().getFullYear();
@@ -33,14 +34,14 @@ export const Footer = () => {
             <h4>Asiakaspalvelu</h4>
             <ul className="list-unstyled">
               <li>
-                <a href="./Faq" className="footer-link">
+                <Link to="./Faq" className="footer-link">
                   FAQ
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="./Contacts" className="footer-link">
+                <Link to="./Contacts" className="footer-link">
                   Yhteystiedot
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
