@@ -34,12 +34,12 @@ export const Footer = () => {
             <h4>Asiakaspalvelu</h4>
             <ul className="list-unstyled">
               <li>
-                <Link to="./Faq" className="footer-link">
+                <Link to="./faq" className="footer-link">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="./Contacts" className="footer-link">
+                <Link to="./contacts" className="footer-link">
                   Yhteystiedot
                 </Link>
               </li>
