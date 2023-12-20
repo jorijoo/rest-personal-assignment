@@ -29,8 +29,8 @@ Please check our wiki [https://github.com/jorijoo/product-store-assignment/wiki/
 
 @laovirtanen [Lauri](https://github.com/laovirtanen)
 
-@Kagari94 [Kagari94](https://github.com/Kagari94)
+@Kagari94 [Jesse](https://github.com/Kagari94)
 
-@NicoK81 [Nico](https://github.com/NicoK81)
+@NicoK81 [Niko](https://github.com/NicoK81)
 
 @timoasumaniemi [Timo](https://github.com/timoasumaniemi)
