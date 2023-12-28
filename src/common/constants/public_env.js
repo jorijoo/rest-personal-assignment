@@ -1,3 +1,3 @@
 export const ENV = {
-    BACKEND: 'https://big.kapsi.fi'
+    BACKEND: 'http://localhost:3001'
 }
