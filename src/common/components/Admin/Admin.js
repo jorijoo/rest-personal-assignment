@@ -5,8 +5,8 @@ import "./Admin.css";
 import { clearAdminData } from "../../signals/AdminSignal";
 import '../../constants/public_env'
 import { LOCALIZATION } from "../../constants/fi";
-import CategoryAdmin from "./CategoryAdmin";
-import ProductAdmin from "./ProductAdmin";
+import CategoryAdmin from "./CategoryAdmin/CategoryAdmin";
+import ProductAdmin from "./ProductAdmin/ProductAdmin";
 
 export default function Admin() {
     const [adminUserName, setAdminUserName] = useState("")

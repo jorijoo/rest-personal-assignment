@@ -3,8 +3,9 @@ import { useState } from 'react'
 import axios from "axios"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { ENV } from "../../constants/public_env"
-import { LOCALIZATION } from "../../constants/fi"
+import { ENV } from "../../../constants/public_env"
+import { LOCALIZATION } from "../../../constants/fi"
+import ListAdminCategories from './ListAdminCategories'
 
 export default function CategoryAdmin() {
     const [categoryName, setCategoryName] = useState("")
@@ -73,6 +74,9 @@ export default function CategoryAdmin() {
                     </Button>
                 </Form.Group>
             </Form>
+            
+            <ListAdminCategories />
+
             <hr></hr>
         </div>
     )
