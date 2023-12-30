@@ -4,6 +4,8 @@ import axios from "axios";
 import "./ProductDetail.css";
 import { cartContentSignal } from "../../signals/CartSignals";
 import { ENV } from '../../constants/public_env'
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const ProductDetail = () => {
     //Haetaan tuotteen id URL:sta käyttämällä params
@@ -62,13 +64,58 @@ const ProductDetail = () => {
         const repCount = +product.positiveReputation + +product.negativeReputation
 
         const reputation = (repCount > 4)
-            ? Math.round(product.positiveReputation / repCount * 100)
+            ? `${Math.round(product.positiveReputation / repCount * 100)} %`
             : 'Ei tarpeeksi arvosteluita'
 
         return (
-            <p className="lead my-2">
-                Asiakkaiden tyytyväisyys tuotteeseen: {reputation} %
-            </p>
+            <>
+                <p className="lead my-2">
+                    Asiakkaiden tyytyväisyys tuotteeseen: {reputation}
+                </p>
+            </>
+        )
+    }
+
+    /**
+     * -----------------------------
+     * Handle reputation input
+     * -----------------------------
+     */
+    const Reputation = () => {
+
+        const submitVote = (e, rep) => {
+            e.preventDefault()
+
+            console.log(id, rep)
+
+            axios.post(`${ENV.BACKEND}/reputation`, { id: id, reputation: rep })
+        }
+
+        return (
+            <>
+                <CheckRep />
+                <h1>Anna palautetta tuoteesta</h1>
+                <Form>
+                    <Form.Group className="mb-3" id="reputation">
+                        <Button
+                            className="me-2"
+                            variant="success"
+                            id="submitButton"
+                            type="submit"
+                            onClick={(e) => submitVote(e, 1)}>
+                            +
+                        </Button>
+                        <Button
+                            variant="danger"
+                            id="submitButton"
+                            type="submit"
+                            onClick={(e) => submitVote(e, 0)}>
+                            -
+                        </Button>
+                    </Form.Group>
+                </Form>
+
+            </>
         )
     }
 
@@ -103,7 +150,7 @@ const ProductDetail = () => {
                             Lisää ostoskoriin
                         </button>
                         {product.unitsStored === 0 && <p className="text-danger">Tuote on loppu varastosta</p>}
-                        <CheckRep />
+                        <Reputation />
                     </div>
                 </div>
             </div>
