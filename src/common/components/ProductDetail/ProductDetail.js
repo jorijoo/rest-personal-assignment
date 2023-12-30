@@ -63,6 +63,7 @@ const ProductDetail = () => {
     const CheckRep = () => {
         const repCount = +product.positiveReputation + +product.negativeReputation
 
+        // Shows positive reputation as percentage
         const reputation = (repCount > 4)
             ? `${Math.round(product.positiveReputation / repCount * 100)} %`
             : 'Ei tarpeeksi arvosteluita'
@@ -77,35 +78,98 @@ const ProductDetail = () => {
     }
 
     /**
+     * ------------------------------
+     * Produce map of product reviews
+     * ------------------------------
+     */
+    const ListReviews = () => {
+        const [reviews, setReviews] = useState([{ id: 1, review: 'Ei arvioita' }])
+
+        useEffect(() => {
+            axios.get(`${ENV.BACKEND}/review/${product.id}`)
+                .then(res => setReviews(res.data))
+                .catch(err => console.error(err.response.data.error))
+        }, [])
+        return (
+            <>
+                {reviews.map(rev =>
+                    <div 
+                    key={rev.id}
+                    className='my-2 bg-light'>
+                        {rev.review}
+                    </div>)}
+            </>
+        )
+    }
+
+    /**
      * ----------------------------
-     * Customer reviews
+     * View and add customer reviews
      * ---------------------------- 
      */
+    const Review = () => {
+        const [review, setReview] = useState('')
+
+        const submitReview = (e) => {
+            e.preventDefault()
+
+            axios.post(`${ENV.BACKEND}/review`, { product: product.id, review })
+                .then(alert('Kiitos kommentista!'))
+                .catch(err => {
+                    console.log(err.response.data.error)
+                    alert(err.response.data.error)
+                })
+        }
+
+        return (
+            <>
+                <ListReviews />
+                {/* Form for sending a review */}
+                <Form>
+                    <Form.Group className='my-3' id="reviewContainer">
+                        <Form.Control
+                            className="text-start"
+                            as="textarea"
+                            value={review}
+                            placeholder='Arvio tuotteesta'
+                            onChange={(e) => setReview(e.target.value)} />
+                        <Button
+                            variant="success"
+                            id="submitButton"
+                            type="submit"
+                            onClick={(e) => submitReview(e)}>
+                            Review
+                        </Button>
+                    </Form.Group>
+                </Form>
+            </>
+        )
+    }
 
     /**
      * -----------------------------
-     * Handle reputation input
+     * Reputation input
      * -----------------------------
      */
     const Reputation = () => {
 
+        // Vote is sent as 0 for negative and 1 for positive
         const submitVote = (e, rep) => {
             e.preventDefault()
 
-            console.log(id, rep)
-
             axios.post(`${ENV.BACKEND}/reputation`, { id: id, reputation: rep })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err.response.data.error))
         }
 
         return (
             <>
                 <CheckRep />
                 <h1>Anna palautetta tuoteesta</h1>
+
+                {/* Reputation voting buttons */}
                 <Form>
-                    <Form.Group className="mb-3" id="reputation">
+                    <Form.Group id="reputationSubmitContainer">
                         <Button
-                            className="me-2"
                             variant="success"
                             id="submitButton"
                             type="submit"
@@ -121,6 +185,7 @@ const ProductDetail = () => {
                         </Button>
                     </Form.Group>
                 </Form>
+                <Review />
             </>
         )
     }
