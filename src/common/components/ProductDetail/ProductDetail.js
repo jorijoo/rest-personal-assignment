@@ -77,6 +77,12 @@ const ProductDetail = () => {
     }
 
     /**
+     * ----------------------------
+     * Customer reviews
+     * ---------------------------- 
+     */
+
+    /**
      * -----------------------------
      * Handle reputation input
      * -----------------------------
@@ -89,6 +95,7 @@ const ProductDetail = () => {
             console.log(id, rep)
 
             axios.post(`${ENV.BACKEND}/reputation`, { id: id, reputation: rep })
+            .catch(err => console.log(err))
         }
 
         return (
@@ -114,7 +121,6 @@ const ProductDetail = () => {
                         </Button>
                     </Form.Group>
                 </Form>
-
             </>
         )
     }
@@ -150,6 +156,7 @@ const ProductDetail = () => {
                             Lisää ostoskoriin
                         </button>
                         {product.unitsStored === 0 && <p className="text-danger">Tuote on loppu varastosta</p>}
+                        {/* Feedback area */}
                         <Reputation />
                     </div>
                 </div>
